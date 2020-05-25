@@ -7,8 +7,6 @@ import services.UserActionService;
 import services.UserDataValidationService;
 import services.models.UserServiceModel;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.List;

@@ -27,7 +27,7 @@
             </div>
             <div class="form-row">
                 <label for="validationCustom01">Парола</label>
-                <input type="text" class="form-control" id="validationCustom01" name="password" placeholder="поне 8 символа" required>
+                <input type="password" class="form-control" id="validationCustom01" name="password" placeholder="поне 8 символа" required>
                 <div class="invalid-feedback">
                     Полето е задължително !
                 </div>
