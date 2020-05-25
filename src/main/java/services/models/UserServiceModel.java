@@ -1,22 +1,15 @@
-package db;
+package services.models;
 
 import enums.Gender;
 
-import javax.persistence.*;
-
-@Entity
-public class User {
+public class UserServiceModel {
     private int id;
-    private String username;
-    private String password;
     private String firstName;
     private String lastName;
     private Gender gender;
     private Integer age;
     private String description;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -25,25 +18,6 @@ public class User {
         this.id = id;
     }
 
-    @Column(nullable = false,unique = true)
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Column(nullable = false)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Column(nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -52,7 +26,6 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Column(nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -61,8 +34,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
     public Gender getGender() {
         return gender;
     }
@@ -71,7 +42,6 @@ public class User {
         this.gender = gender;
     }
 
-    @Column(nullable = false)
     public Integer getAge() {
         return age;
     }
