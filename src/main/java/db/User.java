@@ -3,6 +3,7 @@ package db;
 import enums.Gender;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -14,6 +15,7 @@ public class User {
     private Gender gender;
     private Integer age;
     private String description;
+    private Set<Recipe> recipes;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,11 +82,21 @@ public class User {
         this.age = age;
     }
 
+    @Column
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "author")
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }
