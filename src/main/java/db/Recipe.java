@@ -1,6 +1,7 @@
 package db;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,10 +12,10 @@ public class Recipe {
     private Integer cookingTime;
     private Integer portions;
     private String description;
-    Set<Ingredient> ingredients;
-    RecipeCategory category;
-    private User author;
+    private List<Ingredient> ingredients;
+    private RecipeCategory category;
     private CuisineNationality cuisineNationality;
+    private Post post;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,11 +78,11 @@ public class Recipe {
             joinColumns = @JoinColumn(name = "recipe_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="ingredient_id",referencedColumnName = "id")
     )
-    public Set<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -96,16 +97,6 @@ public class Recipe {
     }
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_id",nullable = false)
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cuisine_nationality_id")
     public CuisineNationality getCuisineNationality() {
         return cuisineNationality;
@@ -113,5 +104,14 @@ public class Recipe {
 
     public void setCuisineNationality(CuisineNationality cuisineNationality) {
         this.cuisineNationality = cuisineNationality;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "recipe")
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }

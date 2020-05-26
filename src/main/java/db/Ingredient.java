@@ -1,13 +1,14 @@
 package db;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 public class Ingredient {
     private int id;
     private String name;
-    private Set<Recipe> recipes;
+    private List<Recipe> recipes;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +30,11 @@ public class Ingredient {
     }
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "ingredients")
-    public Set<Recipe> getRecipes() {
+    public List<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
+    public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
 }

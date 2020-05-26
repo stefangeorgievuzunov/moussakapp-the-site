@@ -3,6 +3,7 @@ package db;
 import enums.Gender;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,8 @@ public class User {
     private Gender gender;
     private Integer age;
     private String description;
-    private Set<Recipe> recipes;
+    private List<Post> posts;
+    private Comment comment;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -92,11 +94,20 @@ public class User {
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "author")
-    public Set<Recipe> getRecipes() {
-        return recipes;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "author")
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 }
