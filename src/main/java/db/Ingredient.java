@@ -28,7 +28,7 @@ public class Ingredient {
         this.name = name;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "recipes")
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "ingredients")
     public Set<Recipe> getRecipes() {
         return recipes;
     }

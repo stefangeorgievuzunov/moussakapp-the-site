@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color:#012e5e;
+    height: 100px;
+    width: 100%;
+}
+header section{
+    margin:auto;
+    padding:20px;
+    width:75%;
+    height: auto;
+}
+header section a{
+    color:#FFF;
+}
+header section a:hover{
+    color: #ffb606;
+}

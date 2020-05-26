@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth.css">
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <div class="authForm">
     <form method="post" action="${pageContext.request.contextPath}/login" class="needs-validation w-100 p-3" novalidate>
         <div class="form-group">

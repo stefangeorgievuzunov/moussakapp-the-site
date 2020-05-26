@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+<jsp:include page="header.jsp"/>
 <jsp:useBean id="loggedUser" scope="request" type="services.models.UserServiceModel"/>
     <h2>Hello,<c:out value="${loggedUser.firstName} ${loggedUser.lastName}"/></h2>
 </body>
