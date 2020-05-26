@@ -1,10 +1,10 @@
-package services.impl;
+package services.user.impl;
 import db.User;
 import enums.Gender;
 import org.modelmapper.ModelMapper;
-import services.PasswordHashingService;
-import services.UserActionService;
-import services.UserDataValidationService;
+import services.user.PasswordHashingService;
+import services.user.UserActionService;
+import services.user.UserDataValidationService;
 import services.models.UserServiceModel;
 
 import javax.inject.Inject;

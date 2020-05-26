@@ -15,6 +15,9 @@
         <c:choose>
             <c:when test="${not empty loggedUser}">
                 <a href="${pageContext.request.contextPath}/logout">Изход</a>
+                <a href="${pageContext.request.contextPath}/profile">
+                    <c:out value="${loggedUser.username}"/>
+                </a>
 <%--                <a href="${pageContext.request.contextPath}/users/all">Потребители</a>--%>
             </c:when>
             <c:otherwise>

@@ -1,10 +1,8 @@
-package services.impl;
+package services.user.impl;
 
 import db.User;
-import services.UserDataValidationService;
+import services.user.UserDataValidationService;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import java.util.List;

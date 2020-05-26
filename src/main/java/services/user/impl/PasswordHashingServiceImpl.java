@@ -1,9 +1,6 @@
-package services.impl;
+package services.user.impl;
 
-import services.PasswordHashingService;
-
-import javax.annotation.ManagedBean;
-import javax.enterprise.inject.Default;
+import services.user.PasswordHashingService;
 
 public class PasswordHashingServiceImpl implements PasswordHashingService {
     @Override

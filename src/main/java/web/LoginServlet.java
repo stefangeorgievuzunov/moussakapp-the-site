@@ -1,6 +1,6 @@
 package web;
 
-import services.UserActionService;
+import services.user.UserActionService;
 import services.models.UserServiceModel;
 
 import javax.inject.Inject;

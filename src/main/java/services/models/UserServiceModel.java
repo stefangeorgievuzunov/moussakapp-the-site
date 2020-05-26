@@ -4,6 +4,7 @@ import enums.Gender;
 
 public class UserServiceModel {
     private int id;
+    private String username;
     private String firstName;
     private String lastName;
     private Gender gender;
@@ -56,5 +57,13 @@ public class UserServiceModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
