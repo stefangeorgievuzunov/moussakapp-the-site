@@ -20,6 +20,8 @@ public class HomeFilter implements Filter {
         if(user instanceof UserServiceModel){
             request.setAttribute("loggedUser",user);
             filterChain.doFilter(request,response);
+        }else{
+            response.sendRedirect("/");
         }
     }
 }
