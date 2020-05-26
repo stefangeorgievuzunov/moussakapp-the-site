@@ -1,7 +1,7 @@
 package web;
 
 import enums.Gender;
-import services.user.UserActionService;
+import services.UserActionService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

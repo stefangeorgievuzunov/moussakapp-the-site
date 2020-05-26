@@ -8,8 +8,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 </head>
 <body>
-<%--<jsp:useBean id="loggedUser" scope="request" type="services.models.UserServiceModel"/>--%>
-<%--<jsp:useBean id="user" scope="request" type="services.models.UserModel"/>--%>
+<jsp:useBean id="loggedUser" scope="request" class="services.models.UserServiceModel"/>
 <header>
     <section>
         <c:choose>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Stefan
-  Date: 5/24/2020
-  Time: 10:27 PM
+  Date: 5/26/2020
+  Time: 6:33 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,10 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<jsp:useBean id="loggedUser" scope="request" class="services.models.UserServiceModel"/>
-    <h2>Hello,<c:out value="${loggedUser.firstName} ${loggedUser.lastName}"/></h2>
+<jsp:useBean id="viewedUser" scope="request" class="services.models.UserServiceModel"/>
+<jsp:useBean id="loggedUser" scope="session" class="services.models.UserServiceModel"/>
+
+<h2>Welcome to <c:out value="${viewedUser.firstName}'s"/> profile :) </h2>
+
 </body>
 </html>

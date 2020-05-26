@@ -1,6 +1,6 @@
-package services.user.impl;
+package services.impl.user;
 
-import services.user.PasswordHashingService;
+import services.PasswordHashingService;
 
 public class PasswordHashingServiceImpl implements PasswordHashingService {
     @Override

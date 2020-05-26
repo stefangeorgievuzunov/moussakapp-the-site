@@ -16,19 +16,20 @@ public class ProfileCheckPassedUrlParametersFilter implements Filter {
 
         Map<String, String[]> urlParams = request.getParameterMap();
 
-        if(urlParams.isEmpty()){
-            Object user=request.getSession(false).getAttribute("user");
+        if (urlParams.isEmpty()) {
+            Object user = request.getSession(false).getAttribute("user");
 
-            if(user instanceof UserServiceModel){
-                request.setAttribute("loggedUser",user);
-                response.sendRedirect("/profile?id="+((UserServiceModel) user).getId());
-            }else{
+            if (user instanceof UserServiceModel) {
+                response.sendRedirect("/profile?id=" + ((UserServiceModel) user).getId());
+            }
+            else {
                 response.sendRedirect("/login");
             }
-        }else if(!urlParams.containsKey("id")){
-            response.sendRedirect("/home"); //on page not found
-        }else{
-            filterChain.doFilter(request,response);
+        }
+        else if (!urlParams.containsKey("id")) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); //on page not found
+        } else {
+            filterChain.doFilter(request, response);
         }
     }
 }

@@ -1,7 +1,7 @@
-package services.user.impl;
+package services.impl.user;
 
 import db.User;
-import services.user.UserDataValidationService;
+import services.UserDataValidationService;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

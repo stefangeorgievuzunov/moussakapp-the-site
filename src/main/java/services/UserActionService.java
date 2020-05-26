@@ -1,4 +1,4 @@
-package services.user;
+package services;
 
 import enums.Gender;
 import services.models.UserServiceModel;
