@@ -20,7 +20,7 @@ public class ProfileCheckPassedUrlParametersFilter implements Filter {
             Object user = request.getSession(false).getAttribute("loggedUser");
 
             if (user instanceof UserServiceModel) {
-                response.sendRedirect("/profile?id=" + ((UserServiceModel) user).getId());
+                response.sendRedirect("/admin/profile");
             }
             else {
                 response.sendRedirect("/login");

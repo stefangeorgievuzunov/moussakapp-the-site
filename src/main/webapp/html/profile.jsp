@@ -15,7 +15,6 @@
 <body>
 <jsp:include page="header.jsp"/>
 
-
 <h2>Welcome to <c:out value="${requestScope.viewedUser.firstName}'s"/> profile :) </h2>
 
 </body>
