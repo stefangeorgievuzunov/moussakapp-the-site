@@ -19,18 +19,18 @@ public class DataRetrievingServiceImpl implements DataRetrievingService {
     }
 
     @Override
-    public <T1,T2> T2 getEntityById(Class<T1> passedType, Class<T2> returnedType, Integer id) {
+    public <T,V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id) {
 
         for (Field field : passedType.getDeclaredFields()) {
             if (field.getName().toLowerCase().equals("id")) {
 
                 String query = String.format("select entity from %s entity where entity.id=%d", passedType.getName(), id);
 
-                List<T1> entities = entityManager.createQuery(query, passedType)
+                List<T> entities = entityManager.createQuery(query, passedType)
                         .getResultList();
 
                 if (!entities.isEmpty()) {
-                    T1 entity = entities.get(0);
+                    T entity = entities.get(0);
                     return modelMapper.map(entity, returnedType);
                 } else
                     break;

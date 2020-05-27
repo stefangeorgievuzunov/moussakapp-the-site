@@ -14,7 +14,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<jsp:useBean id="loggedUser" scope="request" class="services.models.UserServiceModel"/>
-    <h2>Hello,<c:out value="${loggedUser.firstName} ${loggedUser.lastName}"/></h2>
+    <h2>Hello,<c:out value="${sessionScope.loggedUser.firstName} ${sessionScope.loggedUser.lastName}"/></h2>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package filters.profile;
 
+import db.Recipe;
 import db.User;
 import services.DataRetrievingService;
 import services.models.UserServiceModel;

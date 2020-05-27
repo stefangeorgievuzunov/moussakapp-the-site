@@ -15,10 +15,9 @@ public class HomeFilter implements Filter {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response= (HttpServletResponse) servletResponse;
 
-        Object user=request.getSession(false).getAttribute("user");
+        Object user=request.getSession(false).getAttribute("loggedUser");
 
         if(user instanceof UserServiceModel){
-            request.setAttribute("loggedUser",user);
             filterChain.doFilter(request,response);
         }else{
             response.sendRedirect("/");

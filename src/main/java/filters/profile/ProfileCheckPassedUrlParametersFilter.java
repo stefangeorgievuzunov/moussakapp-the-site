@@ -17,7 +17,7 @@ public class ProfileCheckPassedUrlParametersFilter implements Filter {
         Map<String, String[]> urlParams = request.getParameterMap();
 
         if (urlParams.isEmpty()) {
-            Object user = request.getSession(false).getAttribute("user");
+            Object user = request.getSession(false).getAttribute("loggedUser");
 
             if (user instanceof UserServiceModel) {
                 response.sendRedirect("/profile?id=" + ((UserServiceModel) user).getId());

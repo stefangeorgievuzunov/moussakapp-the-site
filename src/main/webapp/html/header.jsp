@@ -8,14 +8,14 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css"/>
 </head>
 <body>
-<jsp:useBean id="loggedUser" scope="request" class="services.models.UserServiceModel"/>
+<%--<jsp:useBean id="loggedUser" scope="request" class="services.models.UserServiceModel"/>--%>
 <header>
     <section>
         <c:choose>
-            <c:when test="${not empty loggedUser}">
+            <c:when test="${not empty sessionScope.loggedUser}">
                 <a href="${pageContext.request.contextPath}/logout">Изход</a>
                 <a href="${pageContext.request.contextPath}/profile">
-                    <c:out value="${loggedUser.username}"/>
+                    <c:out value="${sessionScope.loggedUser.username}"/>
                 </a>
 <%--                <a href="${pageContext.request.contextPath}/users/all">Потребители</a>--%>
             </c:when>

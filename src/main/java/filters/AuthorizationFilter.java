@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/register","/login"})
-public class OnRegisterOrLoginFilter implements Filter {
+public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response= (HttpServletResponse) servletResponse;
 
-        Object user=request.getSession(false).getAttribute("user");
+        Object user=request.getSession(false).getAttribute("loggedUser");
 
         if(user instanceof UserServiceModel){
                 response.sendRedirect("/home");

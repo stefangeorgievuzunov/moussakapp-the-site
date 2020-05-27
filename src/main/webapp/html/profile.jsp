@@ -14,10 +14,9 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<jsp:useBean id="viewedUser" scope="request" class="services.models.UserServiceModel"/>
-<jsp:useBean id="loggedUser" scope="session" class="services.models.UserServiceModel"/>
 
-<h2>Welcome to <c:out value="${viewedUser.firstName}'s"/> profile :) </h2>
+
+<h2>Welcome to <c:out value="${requestScope.viewedUser.firstName}'s"/> profile :) </h2>
 
 </body>
 </html>

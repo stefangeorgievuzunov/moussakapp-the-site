@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
         UserServiceModel userServiceModel=userActionService.login(username,password);
         if (userServiceModel!=null){
-            request.getSession().setAttribute("user",userServiceModel);
+            request.getSession().setAttribute("loggedUser",userServiceModel);
             response.sendRedirect("/home");
         }else{
             doGet(request,response);
