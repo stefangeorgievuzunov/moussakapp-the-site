@@ -4,8 +4,11 @@ import org.modelmapper.ModelMapper;
 import services.DataRetrievingService;
 
 import javax.inject.Inject;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataRetrievingServiceImpl implements DataRetrievingService {
@@ -19,23 +22,27 @@ public class DataRetrievingServiceImpl implements DataRetrievingService {
     }
 
     @Override
-    public <T,V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id) {
+    public <T, V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id) {
+        if (passedType.getAnnotation(Entity.class) != null) {
 
-        for (Field field : passedType.getDeclaredFields()) {
-            if (field.getName().toLowerCase().equals("id")) {
+            entityManager.getTransaction().begin();
+            T entity=entityManager.find(passedType,id);
+            entityManager.getTransaction().commit();
 
-                String query = String.format("select entity from %s entity where entity.id=%d", passedType.getName(), id);
-
-                List<T> entities = entityManager.createQuery(query, passedType)
-                        .getResultList();
-
-                if (!entities.isEmpty()) {
-                    T entity = entities.get(0);
-                    return modelMapper.map(entity, returnedType);
-                } else
-                    break;
-            }
+            return modelMapper.map(entity, returnedType);
         }
         return null;
     }
+
+    @Override
+    public <T, V> List<V> selectAll(Class<T> passedType, Class<V> returnedType, Boolean desc, Field orderBy) {
+        if(passedType.getAnnotation(Entity.class)!=null){
+
+            List<Field> declaredFields= Arrays.asList(passedType.getDeclaredFields());
+            declaredFields.retainAll(Arrays.asList(orderBy));
+
+        }
+        return null;
+    }
+
 }

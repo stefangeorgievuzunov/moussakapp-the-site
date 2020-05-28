@@ -7,7 +7,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-
     <h2><c:out value="${sessionScope.loggedUser.firstName} ${sessionScope.loggedUser.lastName} is here bitches"/></h2>
 </body>
 </html>

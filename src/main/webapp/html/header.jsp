@@ -17,14 +17,13 @@
                 <a href="${pageContext.request.contextPath}/admin/profile">
                     <c:out value="${sessionScope.loggedUser.username}"/>
                 </a>
-<%--                <a href="${pageContext.request.contextPath}/users/all">Потребители</a>--%>
             </c:when>
             <c:otherwise>
                 <a href="${pageContext.request.contextPath}/register">Регистрация</a>
                 <a href="${pageContext.request.contextPath}/login">Вход</a>
-<%--                <a href="${pageContext.request.contextPath}/users/all">Потребители</a>--%>
             </c:otherwise>
         </c:choose>
+        <a href="${pageContext.request.contextPath}/admin/new/recipe">Добави рецепта</a>
     </section>
 </header>
 </body>

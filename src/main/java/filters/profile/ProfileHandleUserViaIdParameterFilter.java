@@ -2,6 +2,7 @@ package filters.profile;
 
 import db.Recipe;
 import db.User;
+import filters.HomeFilter;
 import services.DataRetrievingService;
 import services.models.UserServiceModel;
 
