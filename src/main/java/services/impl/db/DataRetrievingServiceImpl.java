@@ -24,9 +24,10 @@ public class DataRetrievingServiceImpl implements DataRetrievingService {
     @Override
     public <T, V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id) {
         if (passedType.getAnnotation(Entity.class) != null) {
-
             entityManager.getTransaction().begin();
-            T entity=entityManager.find(passedType,id);
+
+            T entity = entityManager.find(passedType, id);
+
             entityManager.getTransaction().commit();
 
             return modelMapper.map(entity, returnedType);
@@ -36,9 +37,9 @@ public class DataRetrievingServiceImpl implements DataRetrievingService {
 
     @Override
     public <T, V> List<V> selectAll(Class<T> passedType, Class<V> returnedType, Boolean desc, Field orderBy) {
-        if(passedType.getAnnotation(Entity.class)!=null){
+        if (passedType.getAnnotation(Entity.class) != null) {
 
-            List<Field> declaredFields= Arrays.asList(passedType.getDeclaredFields());
+            List<Field> declaredFields = Arrays.asList(passedType.getDeclaredFields());
             declaredFields.retainAll(Arrays.asList(orderBy));
 
         }
