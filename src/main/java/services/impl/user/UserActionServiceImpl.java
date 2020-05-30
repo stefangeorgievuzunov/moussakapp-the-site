@@ -2,25 +2,27 @@ package services.impl.user;
 import db.User;
 
 import org.modelmapper.ModelMapper;
+import services.DataManagementService;
 import services.PasswordHashingService;
 import services.UserActionService;
 import services.UserDataValidationService;
+import services.impl.db.DataManagementServiceImpl;
 import services.models.UserServiceModel;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 public class UserActionServiceImpl implements UserActionService {
     private final ModelMapper modelMapper;
-    private final EntityManager entityManager;
+    private final DataManagementService dataManagementService;
     private final UserDataValidationService userDataValidationService;
     private final PasswordHashingService passwordHashingService;
 
     @Inject
-    public UserActionServiceImpl(ModelMapper modelMapper, EntityManager entityManager, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
+    public UserActionServiceImpl(ModelMapper modelMapper,DataManagementService dataManagementService, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
         this.modelMapper = modelMapper;
-        this.entityManager = entityManager;
+        this.dataManagementService = dataManagementService;
         this.userDataValidationService = userDataValidationService;
         this.passwordHashingService = passwordHashingService;
     }
@@ -35,18 +37,23 @@ public class UserActionServiceImpl implements UserActionService {
             user.setFirstName(firstName);
             user.setLastName(lastName);
 
-            entityManager.getTransaction().begin();
-            entityManager.persist(user);
-            entityManager.getTransaction().commit();
+            dataManagementService.persist(user);
         }
     }
 
     @Override
-    public UserServiceModel login(String username, String password) throws Exception {
-        List<User> users=entityManager.createQuery(
-                "select u from User u where u.username=:username",User.class)
-                .setParameter("username",username)
-                .getResultList();
+    public UserServiceModel login(final String username, String password) throws Exception {
+
+        List<User> users=dataManagementService.select(User.class, new DataManagementServiceImpl.Specification() {
+            @Override
+            protected <T> Selection<? extends T> select(Root<T> root, CriteriaBuilder builder) {
+                return root;
+            }
+            @Override
+            protected <T> Predicate where(Root<T> root, CriteriaBuilder builder) {
+                return  builder.equal(root.get("username"),username);
+            }
+        });
 
         if(!users.isEmpty()){
             User user=users.get(0);

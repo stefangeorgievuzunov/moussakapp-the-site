@@ -1,9 +1,7 @@
 package filters.profile;
 
-import db.Recipe;
 import db.User;
-import filters.HomeFilter;
-import services.DataRetrievingService;
+import services.DataManagementService;
 import services.models.UserServiceModel;
 
 import javax.inject.Inject;
@@ -14,7 +12,7 @@ import java.io.IOException;
 
 public class ProfileHandleUserViaIdParameterFilter implements Filter {
     @Inject
-    private  DataRetrievingService dataRetrievingService;
+    private DataManagementService dataManagementService;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -24,7 +22,7 @@ public class ProfileHandleUserViaIdParameterFilter implements Filter {
         try {
             Integer id = Integer.parseInt(request.getParameter("id"));
 
-            UserServiceModel viewedUser = dataRetrievingService.getEntityById(User.class, UserServiceModel.class, id);
+            UserServiceModel viewedUser = dataManagementService.getEntityById(User.class, UserServiceModel.class, id);
 
             if (viewedUser != null) {
                 request.setAttribute("viewedUser", viewedUser);
