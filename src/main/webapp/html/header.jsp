@@ -6,7 +6,7 @@
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
-    <title>Recipes Food - Food & Recipes Food Template</title>
+    <title></title>
     <meta name="description" content="Recipes Food - Food & Recipes Food Template">
     <meta name="keywords" content="recipes food, recipes , sushi, chinese, italian food">
     <meta name="author" content="themearabia.net">
@@ -40,53 +40,61 @@
     <!--<link rel="stylesheet" href="css/skins/darkred.css">-->
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-5 col-xs-6">
-                    <a href="${pageContext.request.contextPath}/" id="logo">
-                        <img src="${pageContext.request.contextPath}/images/logo.png" alt="">
-                    </a>
-                </div>
-                <nav class="col-md-9 col-sm-7 col-xs-6">
-                    <a class="np-toggle-switch np-toggle-switch-nxp open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
-                    <div class="main-menu" id="main-menu">
-                        <div id="header_menu">
-                            <img src="${pageContext.request.contextPath}/images/logo-menu.png" alt="">
-                        </div>
-                        <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
-                        <ul>
-                            <li>
-                                <a href="${pageContext.request.contextPath}/home"><i class="icon_house_alt"></i> Начало </a>
-                            </li>
-                            <li><a href="recipes.html"><i class="ic icon-recipes"></i> Рецепти</a></li>
-                            <li class="submenu">
-                                <a href="javascript:void(0);" class="show-submenu"><i class="ic icon-plus-circle"></i> Страници <i class="fas fa-angle-down"></i></a>
-                                    <ul>
-                                        <c:if test="${empty sessionScope.loggedUser}">
-                                            <li><a href="${pageContext.request.contextPath}/login"><i class="fas fa-sign-in-alt"></i> Потребителски вход</a></li>
-                                            <li><a href="${pageContext.request.contextPath}/register"><i class="fas fa-user-plus"></i> Регистрация</a></li>
-                                        </c:if>
-                                        <li><a href="${pageContext.request.contextPath}/admin/new/recipe"><i class="ic icon-recipes"></i> Добави Рецепта</a></li>
-                                        <li><a href="page-right-sidebar.html"><i class="far fa-file-alt"></i> Добави статия</a></li>
-                                    </ul>
-                            </li>
-                            <c:if test="${not empty sessionScope.loggedUser}">
-                                <li class="submenu">
-                                    <a href="javascript:void(0);" class="show-submenu"><i class="ic icon-chefs"></i><c:out value="${sessionScope.loggedUser.firstName} ${sessionScope.loggedUser.lastName}"/><i class="fas fa-angle-down"></i></a>
-                                    <ul>
-                                        <li><a href="${pageContext.request.contextPath}/admin/profile">Моят профил</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/admin/new/recipe">Моите рецепти</a></li>
-                                        <li><a href="page-right-sidebar.html">Моите статии</a></li>
-                                        <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Излез</a></li>
-                                    </ul>
-                                </li>
-                            </c:if>
-                        </ul>
+    <!-- Preload -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div><!-- End Preload -->
+
+    <div id="wrap">
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-5 col-xs-6">
+                        <a href="${pageContext.request.contextPath}/" id="logo">
+                            <img src="${pageContext.request.contextPath}/images/logo.png" alt="">
+                        </a>
                     </div>
-                </nav>
+                    <nav class="col-md-9 col-sm-7 col-xs-6">
+                        <a class="np-toggle-switch np-toggle-switch-nxp open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                        <div class="main-menu" id="main-menu">
+                            <div id="header_menu">
+                                <img src="${pageContext.request.contextPath}/images/logo-menu.png" alt="">
+                            </div>
+                            <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
+                            <ul>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/home"><i class="icon_house_alt"></i> Начало </a>
+                                </li>
+                                <li><a href="recipes.html"><i class="ic icon-recipes"></i> Рецепти</a></li>
+                                <li class="submenu">
+                                    <a href="javascript:void(0);" class="show-submenu"><i class="ic icon-plus-circle"></i> Страници <i class="fas fa-angle-down"></i></a>
+                                        <ul>
+                                            <c:if test="${empty sessionScope.loggedUser}">
+                                                <li><a href="${pageContext.request.contextPath}/login"><i class="fas fa-sign-in-alt"></i> Потребителски вход</a></li>
+                                                <li><a href="${pageContext.request.contextPath}/register"><i class="fas fa-user-plus"></i> Регистрация</a></li>
+                                            </c:if>
+                                            <li><a href="${pageContext.request.contextPath}/admin/new/recipe"><i class="ic icon-recipes"></i> Добави Рецепта</a></li>
+                                            <li><a href="page-right-sidebar.html"><i class="far fa-file-alt"></i> Добави статия</a></li>
+                                        </ul>
+                                </li>
+                                <c:if test="${not empty sessionScope.loggedUser}">
+                                    <li class="submenu">
+                                        <a href="javascript:void(0);" class="show-submenu"><i class="ic icon-chefs"></i><c:out value="${sessionScope.loggedUser.firstName} ${sessionScope.loggedUser.lastName}"/><i class="fas fa-angle-down"></i></a>
+                                        <ul>
+                                            <li><a href="${pageContext.request.contextPath}/admin/profile">Моят профил</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/admin/new/recipe">Моите рецепти</a></li>
+                                            <li><a href="page-right-sidebar.html">Моите статии</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Излез</a></li>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 </body>
 </html>
