@@ -35,30 +35,40 @@ public class DataManagementServiceImpl implements DataManagementService {
     }
 
     @Override
-    public <T> List<T> select(Class<T> passedType, Specification specification) {
-        if (passedType.getAnnotation(Entity.class) != null) {
-            try {
+    public <T, V> List<V> select(Specification<T, V> specification) {
+        try {
+            if (specification.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-                CriteriaQuery<T> criteriaQuery = criteriaBuilder.createQuery(passedType);
-                Root<T> root = criteriaQuery.from(passedType);
+                CriteriaQuery<T> cqEntity = criteriaBuilder.createQuery(specification.entityType);
+                Root<T> root = cqEntity.from(specification.entityType);
 
-                criteriaQuery.select(specification.select(root, criteriaBuilder));
-                criteriaQuery.where(specification.where(root, criteriaBuilder));
+                CriteriaQuery<V> cqReturn = criteriaBuilder.createQuery(specification.returnType);
 
-                return entityManager.createQuery(criteriaQuery).getResultList();
+                cqReturn.select(specification.select(root, criteriaBuilder));
+                cqReturn.where(specification.where(root, criteriaBuilder));
 
-            } catch (Exception exception) {
-                exception.printStackTrace();
-                return new ArrayList<>();
+                return entityManager.createQuery(cqReturn).getResultList();
             }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return new ArrayList<>();
         }
         return new ArrayList<>();
     }
 
-    public abstract static class Specification {
-        protected abstract <T> Selection<? extends T> select(Root<T> root, CriteriaBuilder builder);
-        protected abstract <T> Predicate where(Root<T> root, CriteriaBuilder builder);
+    public abstract static class Specification<T, V> {
+        private final Class<T> entityType;
+        private final Class<V> returnType;
+
+        protected Specification(Class<T> entityType, Class<V> returnType) {
+            this.entityType = entityType;
+            this.returnType = returnType;
+        }
+
+        protected abstract Selection<? extends V> select(Root<T> root, CriteriaBuilder builder);
+
+        protected abstract Predicate where(Root<T> root, CriteriaBuilder builder);
     }
 
     @Override

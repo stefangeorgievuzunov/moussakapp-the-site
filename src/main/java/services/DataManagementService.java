@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DataManagementService {
     <T, V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id);
-    <T> List<T> select(Class<T> passedType, DataManagementServiceImpl.Specification specification);
+    <T,V> List<V> select(DataManagementServiceImpl.Specification<T,V> specification);
     <T> void persist(T passedObject);
 }

@@ -44,14 +44,15 @@ public class UserActionServiceImpl implements UserActionService {
     @Override
     public UserServiceModel login(final String username, String password) throws Exception {
 
-        List<User> users=dataManagementService.select(User.class, new DataManagementServiceImpl.Specification() {
+        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<>(User.class,User.class) {
             @Override
-            protected <T> Selection<? extends T> select(Root<T> root, CriteriaBuilder builder) {
+            protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
                 return root;
             }
+
             @Override
-            protected <T> Predicate where(Root<T> root, CriteriaBuilder builder) {
-                return  builder.equal(root.get("username"),username);
+            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
+                return builder.equal(root.get("username"),username);
             }
         });
 

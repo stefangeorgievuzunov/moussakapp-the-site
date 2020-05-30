@@ -8,7 +8,7 @@ public class Post {
     private int id;
     private User author;
     private Recipe recipe;
-    private List<Comment> commnets;
+    private List<Comment> comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +41,11 @@ public class Post {
     }
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "post")
-    public List<Comment> getCommnets() {
-        return commnets;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCommnets(List<Comment> commnets) {
-        this.commnets = commnets;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
