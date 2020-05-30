@@ -48,6 +48,29 @@
     </div><!-- End Preload -->
 
     <div id="wrap">
+
+        <div id="header-top">
+            <div class="container">
+                <div class="row">
+<%--                    <nav class="col-md-6 col-sm-6 col-xs-7">--%>
+                        <nav class="col-md-12 col-sm-6 col-xs-7">
+                        <div class="main-menu-2">
+                            <ul>
+                                <c:choose>
+                                    <c:when test="${empty sessionScope.loggedUser}">
+                                        <li><a href="${pageContext.request.contextPath}/login"><i class="fas fa-sign-in-alt"></i> Влез</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/register"><i class="fas fa-user-plus"></i> Регистрирай се</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> Излез</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </ul>
+                        </div><!-- End main-menu-2 -->
+                    </nav>
+                </div>
+            </div>
+        </div><!-- End Header Top -->
         <header>
             <div class="container">
                 <div class="row">

@@ -9,32 +9,6 @@
 </head>
 <body class="sticky">
 <jsp:include page="header.jsp"/>
-<%--<div class="authForm">--%>
-<%--    <form method="post" action="${pageContext.request.contextPath}/login" class="needs-validation w-100 p-3" novalidate>--%>
-<%--        <div class="form-group">--%>
-<%--            <div class="form-row">--%>
-<%--                <label for="validationCustomUsername">Потребителско име</label>--%>
-<%--                <div class="input-group">--%>
-<%--                    <div class="input-group-prepend">--%>
-<%--                        <span class="input-group-text" id="inputGroupPrepend">@</span>--%>
-<%--                    </div>--%>
-<%--                    <input type="email" class="form-control" id="validationCustomUsername" name="username" placeholder="e-mail" aria-describedby="inputGroupPrepend" required>--%>
-<%--                    <div class="invalid-feedback">--%>
-<%--                        Полето е задължително !--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--            <div class="form-row">--%>
-<%--                <label for="validationCustom01">Парола</label>--%>
-<%--                <input type="password" class="form-control" id="validationCustom01" name="password" placeholder="поне 8 символа" required>--%>
-<%--                <div class="invalid-feedback">--%>
-<%--                    Полето е задължително !--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <button class="btn btn-primary" type="submit">Влез</button>--%>
-<%--    </form>--%>
-<%--</div>--%>
 <section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="http://placehold.it/1400x300" data-natural-width="1400" data-natural-height="300">
     <div id="sub_header">
         <div class="container" id="sub_content">
