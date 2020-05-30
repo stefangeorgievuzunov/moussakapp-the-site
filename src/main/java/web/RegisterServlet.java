@@ -22,13 +22,13 @@ public class RegisterServlet extends HttpServlet {
         String rePassword = request.getParameter("rePassword");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String description = request.getParameter("description");
 
-        Integer age = 69; //test purposes only
-        Gender gender = Gender.MALE; //test purposes only
-
-        if(userActionService.register(username,password,rePassword,firstName,lastName,gender,age,description)){
+        try {
+            userActionService.register(username,password,rePassword,firstName,lastName);
             response.sendRedirect("/login");
+        } catch (Exception e) {
+            e.printStackTrace();
+            doGet(request,response);
         }
     }
 

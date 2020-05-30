@@ -65,7 +65,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(value = EnumType.STRING)
     public Gender getGender() {
         return gender;
@@ -75,7 +75,7 @@ public class User {
         this.gender = gender;
     }
 
-    @Column(nullable = false)
+    @Column
     public Integer getAge() {
         return age;
     }

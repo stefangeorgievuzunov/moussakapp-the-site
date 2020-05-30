@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
-<body class="boxed">
+<body class="sticky">
 <div id="wrap">
     <!-- Preload -->
     <div id="loader-wrapper">

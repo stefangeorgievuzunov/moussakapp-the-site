@@ -33,9 +33,9 @@
     <!--<link rel="stylesheet" href="css/skins/green.css">-->
     <!--<link rel="stylesheet" href="css/skins/cyan.css">-->
     <!--<link rel="stylesheet" href="css/skins/orange.css">-->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skins/pink.css">
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skins/pink.css">--%>
     <!--<link rel="stylesheet" href="css/skins/purple.css">-->
-    <!--<link rel="stylesheet" href="css/skins/red.css">-->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/skins/red.css">
     <!--<link rel="stylesheet" href="css/skins/lactic.css">-->
     <!--<link rel="stylesheet" href="css/skins/darkred.css">-->
 </head>
@@ -57,7 +57,7 @@
                         <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                         <ul>
                             <li>
-                                <a href="${pageContext.request.contextPath}/home" ><i class="icon_house_alt"></i> Начало </a>
+                                <a href="${pageContext.request.contextPath}/home"><i class="icon_house_alt"></i> Начало </a>
                             </li>
                             <li><a href="recipes.html"><i class="ic icon-recipes"></i> Рецепти</a></li>
                             <li class="submenu">
