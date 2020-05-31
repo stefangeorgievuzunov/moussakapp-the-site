@@ -93,7 +93,7 @@ public class User {
         this.description = description;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "author")
+    @OneToMany(mappedBy = "author")
     public List<Post> getPosts() {
         return posts;
     }
@@ -102,7 +102,7 @@ public class User {
         this.posts = posts;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "author")
+    @OneToOne(mappedBy = "author")
     public Comment getComment() {
         return comment;
     }

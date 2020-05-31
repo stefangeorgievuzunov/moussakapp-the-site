@@ -31,7 +31,7 @@ public class CuisineNationality {
         this.name = name;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "cuisineNationality")
+    @OneToMany(mappedBy = "cuisineNationality")
     public List<Recipe> getRecipes() {
         return recipes;
     }

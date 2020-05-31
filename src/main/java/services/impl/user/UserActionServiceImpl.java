@@ -44,7 +44,7 @@ public class UserActionServiceImpl implements UserActionService {
     @Override
     public UserServiceModel login(final String username, String password) throws Exception {
 
-        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<>(User.class,User.class) {
+        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User,User>(User.class,User.class) {
             @Override
             protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
                 return root;

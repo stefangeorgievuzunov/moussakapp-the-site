@@ -8,7 +8,7 @@ import java.util.Set;
 public class Ingredient {
     private int id;
     private String name;
-    private List<Recipe> recipes;
+    private Set<Recipe> recipes;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +29,12 @@ public class Ingredient {
         this.name = name;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "ingredients")
-    public List<Recipe> getRecipes() {
+    @ManyToMany(mappedBy = "ingredients")
+    public Set<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
+    public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
 }

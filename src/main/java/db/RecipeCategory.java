@@ -27,7 +27,7 @@ public class RecipeCategory {
         this.name = name;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "category")
+    @OneToOne(mappedBy = "category")
     public Recipe getRecipe() {
         return recipe;
     }

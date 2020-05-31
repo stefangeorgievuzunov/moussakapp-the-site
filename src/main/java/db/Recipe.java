@@ -12,7 +12,7 @@ public class Recipe {
     private Integer cookingTime;
     private Integer portions;
     private String description;
-    private List<Ingredient> ingredients;
+    private Set<Ingredient> ingredients;
     private RecipeCategory category;
     private CuisineNationality cuisineNationality;
     private Post post;
@@ -27,7 +27,7 @@ public class Recipe {
         this.id = id;
     }
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     public String getTitle() {
         return title;
     }
@@ -36,7 +36,7 @@ public class Recipe {
         this.title = title;
     }
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     public Integer getPrepareTime() {
         return prepareTime;
     }
@@ -45,7 +45,7 @@ public class Recipe {
         this.prepareTime = prepareTime;
     }
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     public Integer getCookingTime() {
         return cookingTime;
     }
@@ -54,7 +54,7 @@ public class Recipe {
         this.cookingTime = cookingTime;
     }
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     public Integer getPortions() {
         return portions;
     }
@@ -63,7 +63,7 @@ public class Recipe {
         this.portions = portions;
     }
 
-    @Column(nullable =false)
+    @Column(nullable = false)
     public String getDescription() {
         return description;
     }
@@ -72,22 +72,22 @@ public class Recipe {
         this.description = description;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-            name="recipe_ingredient",
-            joinColumns = @JoinColumn(name = "recipe_id",referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="ingredient_id",referencedColumnName = "id")
+            name = "recipe_ingredient",
+            joinColumns = {@JoinColumn(name = "recipe_id")},
+            inverseJoinColumns = {@JoinColumn(name = "ingredient_id")}
     )
-    public List<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "category_id")
     public RecipeCategory getCategory() {
         return category;
     }
@@ -96,8 +96,8 @@ public class Recipe {
         this.category = category;
     }
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cuisine_nationality_id")
+    @ManyToOne
+    @JoinColumn(name = "cuisine_nationality_id")
     public CuisineNationality getCuisineNationality() {
         return cuisineNationality;
     }
@@ -106,7 +106,7 @@ public class Recipe {
         this.cuisineNationality = cuisineNationality;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "recipe")
+    @OneToOne(mappedBy = "recipe")
     public Post getPost() {
         return post;
     }

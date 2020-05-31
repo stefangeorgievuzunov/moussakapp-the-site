@@ -15,6 +15,7 @@
 <body class="sticky">
     <jsp:include page="header.jsp"/>
     <h2>Hello,<c:out value="${sessionScope.loggedUser.firstName} ${sessionScope.loggedUser.lastName}"/></h2>
+    <h1><c:out value="${requestScope.data}"/> </h1>
     <jsp:include page="footer.jsp"/>
 </body>
 </html>

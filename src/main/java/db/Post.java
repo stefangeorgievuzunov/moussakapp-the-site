@@ -20,8 +20,8 @@ public class Post {
         this.id = id;
     }
 
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="user_id",referencedColumnName = "id",nullable = false)
+    @ManyToOne
+    @JoinColumn(name="user_id",nullable = false)
     public User getAuthor() {
         return author;
     }
@@ -30,8 +30,8 @@ public class Post {
         this.author = author;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "recipe_id")
     public Recipe getRecipe() {
         return recipe;
     }
@@ -40,7 +40,7 @@ public class Post {
         this.recipe = recipe;
     }
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "post")
+    @OneToMany(mappedBy = "post")
     public List<Comment> getComments() {
         return comments;
     }

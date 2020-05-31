@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
@@ -26,16 +27,22 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          request.getRequestDispatcher("/html/home.jsp").forward(request,response);
-         dataManagementService.select(new DataManagementServiceImpl.Specification<>(User.class,Long.class){
+
+         Long data=dataManagementService.selectSingleResult(new DataManagementServiceImpl.Specification<User,Long>(User.class,Long.class){
              @Override
              protected Selection<? extends Long> select(Root<User> root, CriteriaBuilder builder) {
-                 return builder.count(root);
+                 CriteriaQuery<Long> criteriaQuery=builder.createQuery(Long.class);
+
+                 return builder.count(criteriaQuery.from(User.class));
+//                 return builder.count(root);
              }
 
              @Override
              protected Predicate where(Root<User> root, CriteriaBuilder builder) {
-                 return null;
+                 return builder.equal(root.get("firstName"),"Stefan");
              }
          });
+
+         request.setAttribute("data",data);
     }
 }

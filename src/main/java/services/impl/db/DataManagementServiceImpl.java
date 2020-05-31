@@ -40,10 +40,8 @@ public class DataManagementServiceImpl implements DataManagementService {
             if (specification.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-                CriteriaQuery<T> cqEntity = criteriaBuilder.createQuery(specification.entityType);
-                Root<T> root = cqEntity.from(specification.entityType);
-
                 CriteriaQuery<V> cqReturn = criteriaBuilder.createQuery(specification.returnType);
+                Root<T> root = cqReturn.from(specification.entityType);
 
                 cqReturn.select(specification.select(root, criteriaBuilder));
                 cqReturn.where(specification.where(root, criteriaBuilder));
@@ -57,9 +55,31 @@ public class DataManagementServiceImpl implements DataManagementService {
         return new ArrayList<>();
     }
 
+    @Override
+    public <T, V> V selectSingleResult(Specification<T, V> specification) {
+        try {
+            if (specification.entityType.getAnnotation(Entity.class) != null) {
+                CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+                CriteriaQuery<V> cqReturn = criteriaBuilder.createQuery(specification.returnType);
+                Root<T> root = cqReturn.from(specification.entityType);
+
+                cqReturn.select(specification.select(root, criteriaBuilder));
+                cqReturn.where(specification.where(root, criteriaBuilder));
+
+
+                return entityManager.createQuery(cqReturn).getSingleResult();
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
+        return null;
+    }
+
     public abstract static class Specification<T, V> {
-        private final Class<T> entityType;
-        private final Class<V> returnType;
+        protected Class<T> entityType;
+        protected Class<V> returnType;
 
         protected Specification(Class<T> entityType, Class<V> returnType) {
             this.entityType = entityType;
