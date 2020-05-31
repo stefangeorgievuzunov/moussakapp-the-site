@@ -40,41 +40,25 @@ public class DataManagementServiceImpl implements DataManagementService {
             if (specification.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-                CriteriaQuery<V> cqReturn = criteriaBuilder.createQuery(specification.returnType);
-                Root<T> root = cqReturn.from(specification.entityType);
+                CriteriaQuery<V> criteriaQuery = criteriaBuilder.createQuery(specification.returnType);
+                Root<T> root = criteriaQuery.from(specification.entityType);
 
-                cqReturn.select(specification.select(root, criteriaBuilder));
-                cqReturn.where(specification.where(root, criteriaBuilder));
+                Selection<? extends V> selection=specification.select(root, criteriaBuilder);
+                Predicate predicate=specification.where(root, criteriaBuilder);
 
-                return entityManager.createQuery(cqReturn).getResultList();
+                if (predicate!=null){
+                    criteriaQuery.where(predicate);
+                }
+
+                criteriaQuery.select(selection);
+
+                return entityManager.createQuery(criteriaQuery).getResultList();
             }
         } catch (Exception exception) {
             exception.printStackTrace();
             return new ArrayList<>();
         }
         return new ArrayList<>();
-    }
-
-    @Override
-    public <T, V> V selectSingleResult(Specification<T, V> specification) {
-        try {
-            if (specification.entityType.getAnnotation(Entity.class) != null) {
-                CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
-                CriteriaQuery<V> cqReturn = criteriaBuilder.createQuery(specification.returnType);
-                Root<T> root = cqReturn.from(specification.entityType);
-
-                cqReturn.select(specification.select(root, criteriaBuilder));
-                cqReturn.where(specification.where(root, criteriaBuilder));
-
-
-                return entityManager.createQuery(cqReturn).getSingleResult();
-            }
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return null;
-        }
-        return null;
     }
 
     public abstract static class Specification<T, V> {

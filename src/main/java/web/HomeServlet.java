@@ -26,23 +26,32 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         request.getRequestDispatcher("/html/home.jsp").forward(request,response);
+        List<Long> data = dataManagementService.select(new DataManagementServiceImpl.Specification<User, Long>(User.class, Long.class) {
+            @Override
+            protected Selection<? extends Long> select(Root<User> root, CriteriaBuilder builder) {
+                return builder.count(root);
+            }
+            @Override
+            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
+                return null;
+            }
+        });
 
-         Long data=dataManagementService.selectSingleResult(new DataManagementServiceImpl.Specification<User,Long>(User.class,Long.class){
-             @Override
-             protected Selection<? extends Long> select(Root<User> root, CriteriaBuilder builder) {
-                 CriteriaQuery<Long> criteriaQuery=builder.createQuery(Long.class);
+        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User, User>(User.class,User.class) {
+            @Override
+            protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
+                return null;
+            }
 
-                 return builder.count(criteriaQuery.from(User.class));
-//                 return builder.count(root);
-             }
+            @Override
+            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
+                return null;
+            }
+        });
 
-             @Override
-             protected Predicate where(Root<User> root, CriteriaBuilder builder) {
-                 return builder.equal(root.get("firstName"),"Stefan");
-             }
-         });
+        System.out.println("USERS SIZE :" + users.size());
 
-         request.setAttribute("data",data);
+        request.setAttribute("data", data.get(0));
+        request.getRequestDispatcher("/html/home.jsp").forward(request, response);
     }
 }
