@@ -28,7 +28,7 @@ public class Comment {
         this.body = body;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     public User getAuthor() {
         return author;
@@ -38,7 +38,7 @@ public class Comment {
         this.author = author;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="post_id")
     public Post getPost() {
         return post;

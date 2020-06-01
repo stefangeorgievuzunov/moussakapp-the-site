@@ -102,7 +102,7 @@ public class User {
         this.posts = posts;
     }
 
-    @OneToOne(mappedBy = "author")
+    @OneToOne(mappedBy = "author",fetch = FetchType.LAZY)
     public Comment getComment() {
         return comment;
     }

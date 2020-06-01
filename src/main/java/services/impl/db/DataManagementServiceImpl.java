@@ -43,10 +43,10 @@ public class DataManagementServiceImpl implements DataManagementService {
                 CriteriaQuery<V> criteriaQuery = criteriaBuilder.createQuery(specification.returnType);
                 Root<T> root = criteriaQuery.from(specification.entityType);
 
-                Selection<? extends V> selection=specification.select(root, criteriaBuilder);
-                Predicate predicate=specification.where(root, criteriaBuilder);
+                Selection<? extends V> selection = specification.select(root, criteriaBuilder);
+                Predicate predicate = specification.where(root, criteriaBuilder);
 
-                if (predicate!=null){
+                if (predicate != null) {
                     criteriaQuery.where(predicate);
                 }
 
@@ -61,18 +61,17 @@ public class DataManagementServiceImpl implements DataManagementService {
         return new ArrayList<>();
     }
 
-    public abstract static class Specification<T, V> {
+
+    public abstract static class Specification<T, V>{
         protected Class<T> entityType;
         protected Class<V> returnType;
 
-        protected Specification(Class<T> entityType, Class<V> returnType) {
+        public Specification(Class<T> entityType, Class<V> returnType) {
             this.entityType = entityType;
             this.returnType = returnType;
         }
-
-        protected abstract Selection<? extends V> select(Root<T> root, CriteriaBuilder builder);
-
-        protected abstract Predicate where(Root<T> root, CriteriaBuilder builder);
+        protected  abstract Selection<? extends V> select(Root<T> root, CriteriaBuilder builder);
+        protected  abstract Predicate where(Root<T> root, CriteriaBuilder builder);
     }
 
     @Override

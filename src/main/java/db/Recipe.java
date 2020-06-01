@@ -86,7 +86,7 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     public RecipeCategory getCategory() {
         return category;
@@ -96,7 +96,7 @@ public class Recipe {
         this.category = category;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cuisine_nationality_id")
     public CuisineNationality getCuisineNationality() {
         return cuisineNationality;
@@ -106,7 +106,7 @@ public class Recipe {
         this.cuisineNationality = cuisineNationality;
     }
 
-    @OneToOne(mappedBy = "recipe")
+    @OneToOne(mappedBy = "recipe",fetch = FetchType.LAZY)
     public Post getPost() {
         return post;
     }

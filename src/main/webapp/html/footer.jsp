@@ -36,7 +36,6 @@
         </div><!-- End container -->
     </footer><!-- End Footer -->
 </div>
-
     <div class="go-up"><i class="fas fa-chevron-up"></i></div>
 
     <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>

@@ -17,7 +17,7 @@
 		horizrailenabled: false,
 		cursorborderradius: 0,
 	});
-              
+
 	
     /* add class sticky in header */
     jQuery(window).on('scroll', function () {

@@ -40,15 +40,17 @@
     <!--<link rel="stylesheet" href="css/skins/darkred.css">-->
 </head>
 <body>
+<!--[if lte IE 8]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+<![endif]-->
     <!-- Preload -->
     <div id="loader-wrapper">
         <div id="loader"></div>
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
-    </div><!-- End Preload -->
 
+    </div>
     <div id="wrap">
-
         <div id="header-top">
             <div class="container">
                 <div class="row">

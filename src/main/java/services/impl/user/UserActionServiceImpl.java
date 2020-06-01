@@ -47,7 +47,7 @@ public class UserActionServiceImpl implements UserActionService {
         List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User,User>(User.class,User.class) {
             @Override
             protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
-                return root;
+                return null;
             }
 
             @Override

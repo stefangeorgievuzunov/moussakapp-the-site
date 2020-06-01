@@ -20,7 +20,7 @@ public class Post {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id",nullable = false)
     public User getAuthor() {
         return author;
@@ -30,7 +30,7 @@ public class Post {
         this.author = author;
     }
 
-    @OneToOne
+    @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "recipe_id")
     public Recipe getRecipe() {
         return recipe;
