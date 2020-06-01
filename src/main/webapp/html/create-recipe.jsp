@@ -58,29 +58,25 @@
                             <div class="row-recipe-ingredient">
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <span class="count-of">1</span>
                                     <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <span class="count-of">2</span>
                                     <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <span class="count-of">3</span>
                                     <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <span class="count-of">4</span>
                                     <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-addnew-item"><i class="far fa-plus-square"></i> Добави нова съставка</button>
+                            <button type="button" class="btn btn-addnew-ingredient"><i class="far fa-plus-square"></i> Добави нова съставка</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -88,29 +84,25 @@
                             <div class="row-recipe-instructions">
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <span class="count-of">1</span>
                                     <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <span class="count-of">2</span>
                                     <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <span class="count-of">3</span>
                                     <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <span class="count-of">4</span>
                                     <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-addnew-item"><i class="far fa-plus-square"></i> Добави нова инструкция</button>
+                            <button type="button" class="btn btn-addnew-instruction"><i class="far fa-plus-square"></i> Добави нова инструкция</button>
                         </div>
                     </div>
                 </div>
@@ -125,15 +117,15 @@
                         </div>
                         <div class="form-group">
                             <label for="preptime">Време за приготвяне /минути/</label>
-                            <input type="text" id="preptime" name="prepTime" class="form-control" placeholder="Prep time">
+                            <input type="text" id="preptime" name="prepTime" class="form-control" placeholder="Време за приготвяне">
                         </div>
                         <div class="form-group">
                             <label for="cooktime">Време за готвене /минути/</label>
-                            <input type="text" id="cooktime" name="cookTime" class="form-control" placeholder="Cook time">
+                            <input type="text" id="cooktime" name="cookTime" class="form-control" placeholder="Време за готвене">
                         </div>
                         <div class="form-group">
                             <label for="numberofservings">Порции</label>
-                            <input type="text" id="numberofservings" name="portions" class="form-control" placeholder="Number of servings">
+                            <input type="text" id="numberofservings" name="portions" class="form-control" placeholder="Брой порции">
                         </div>
                         <div class="form-group">
                             <div class="recipe-button">
@@ -147,6 +139,5 @@
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>
-
 </body>
 </html>
