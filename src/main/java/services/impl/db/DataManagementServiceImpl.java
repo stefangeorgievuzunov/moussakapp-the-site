@@ -56,7 +56,7 @@ public class DataManagementServiceImpl implements DataManagementService {
             }
         } catch (Exception exception) {
             exception.printStackTrace();
-            return new ArrayList<>();
+//            return new ArrayList<>();
         }
         return new ArrayList<>();
     }

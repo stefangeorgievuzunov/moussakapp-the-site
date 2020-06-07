@@ -1,6 +1,7 @@
 package web;
 
 import enums.Gender;
+import exceptions.InvalidDataException;
 import services.UserActionService;
 
 import javax.inject.Inject;
@@ -26,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         try {
             userActionService.register(username,password,rePassword,firstName,lastName);
             response.sendRedirect("/login");
-        } catch (Exception e) {
+        } catch (InvalidDataException e) {
             e.printStackTrace();
             doGet(request,response);
         }

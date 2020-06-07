@@ -52,5 +52,6 @@
     <script src="${pageContext.request.contextPath}/js/ion.rangeSlider.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/imagesloaded.pkgd.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/js/required.js"></script>
 </body>
 </html>

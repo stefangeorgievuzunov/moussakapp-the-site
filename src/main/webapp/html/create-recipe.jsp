@@ -42,12 +42,12 @@
             <h2 class="nomargin_top">Нова рецепта</h2>
             <hr class="divider">
         </div>
-        <form action="${pageContext.request.contextPath}/admin/new/recipe" method="post">
-            <div class="row">
+        <div class="row">
+            <form method="post" action="${pageContext.request.contextPath}/admin/new/recipe">
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label for="recipetitle">Заглавие</label>
-                        <input type="text" id="recipetitle" name="recipeTitle" class="form-control" placeholder="Заглавие на рецепта">
+                        <label for="recipetitle">Заглавие *</label>
+                        <input type="text" id="recipetitle" name="recipeTitle" class="form-control" placeholder="Заглавие на рецепта" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Описание</label>
@@ -105,6 +105,12 @@
                             <button type="button" class="btn btn-addnew-instruction"><i class="far fa-plus-square"></i> Добави нова инструкция</button>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="category">Категория *</label>
+                        <select class="form-control" id="category" required>
+                            <option>Десерт</option>
+                        </select>
+                    </div>
                 </div>
                 <aside class="col-md-4 sidebar sticky-sidebar">
                     <div class="theiaStickySidebar">
@@ -117,25 +123,25 @@
                         </div>
                         <div class="form-group">
                             <label for="preptime">Време за приготвяне /минути/</label>
-                            <input type="text" id="preptime" name="prepTime" class="form-control" placeholder="Време за приготвяне">
+                            <input type="text" id="preptime" name="prepTime" class="form-control" placeholder="Време за приготвяне" required>
                         </div>
                         <div class="form-group">
                             <label for="cooktime">Време за готвене /минути/</label>
-                            <input type="text" id="cooktime" name="cookTime" class="form-control" placeholder="Време за готвене">
+                            <input type="text" id="cooktime" name="cookTime" class="form-control" placeholder="Време за готвене" required>
                         </div>
                         <div class="form-group">
                             <label for="numberofservings">Порции</label>
-                            <input type="text" id="numberofservings" name="portions" class="form-control" placeholder="Брой порции">
+                            <input type="text" id="numberofservings" name="portions" class="form-control" placeholder="Брой порции" required>
                         </div>
                         <div class="form-group">
                             <div class="recipe-button">
-                                <button type="button" class="btn btn-save">Запази</button>
+                                <button type="submit" class="btn btn-save">Запази</button>
                             </div>
                         </div>
                     </div>
                 </aside>
-            </div>
-        </form>
+            </form>
+        </div>
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>

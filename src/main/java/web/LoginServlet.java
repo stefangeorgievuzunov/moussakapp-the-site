@@ -1,5 +1,6 @@
 package web;
 
+import exceptions.InvalidDataException;
 import services.UserActionService;
 import services.models.UserServiceModel;
 
@@ -26,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
             request.getSession().setAttribute("loggedUser", userServiceModel);
             response.sendRedirect("/home");
-        } catch (Exception e) {
+        } catch (InvalidDataException e) {
             e.printStackTrace();
             doGet(request, response);
         }
