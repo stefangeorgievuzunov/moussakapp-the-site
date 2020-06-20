@@ -57,8 +57,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="validationCustom01">Парола</label>
-                            <input type="password" class="form-control" id="validationCustom01" name="password" placeholder="Поне 8 символа" required>
+                            <label for="validationCustomPassword">Парола</label>
+                            <input type="password" class="form-control" id="validationCustomPassword" name="password" placeholder="Поне 8 символа" required>
                             <div class="invalid-feedback">
                                 Полето е задължително !
                             </div>
