@@ -31,7 +31,7 @@ $(document).ready(function () {
                     type: 'post',
                     data: JSON.stringify(data),
                     dataType: 'json',
-                    contentType: 'application/json',
+                    contentType: 'application/json;charset=utf-8',
 
                     success: function (data) {
                         console.log(data);
