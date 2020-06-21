@@ -30,7 +30,7 @@ public class RegisterAuthorizationServlet extends HttpServlet {
             RegisterViewModel model=json.read(request.getReader(),RegisterViewModel.class);
 
             if (model!=null){
-                userActionService.register(model.getUsername(),model.getPassword(),model.getRePassword(),model.getFirstName(),model.getLastName());
+                userActionService.register(model.getUsername(),model.getPassword(),model.getFirstName(),model.getLastName());
 
                 registerResponse.setRedirect("/login");
                 registerResponse.setSuccess(true);

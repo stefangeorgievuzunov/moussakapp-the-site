@@ -20,7 +20,6 @@ $(document).ready(function () {
                 const data = {
                     username: username,
                     password: password,
-                    rePassword: rePassword,
                     firstName: firstName,
                     lastName: lastName
                 }

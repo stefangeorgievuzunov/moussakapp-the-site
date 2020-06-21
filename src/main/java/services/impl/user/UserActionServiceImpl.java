@@ -29,8 +29,8 @@ public class UserActionServiceImpl implements UserActionService {
     }
 
     @Override
-    public void register(String username, String password, String rePassword, String firstName, String lastName) throws InvalidDataException {
-        if (userDataValidationService.isUserDataValid(username, password, rePassword)) {
+    public void register(String username, String password, String firstName, String lastName) throws InvalidDataException {
+        if (userDataValidationService.isUserDataValid(username)) {
 
             User user=new User();
             user.setUsername(username);

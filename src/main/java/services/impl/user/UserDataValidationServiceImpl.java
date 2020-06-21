@@ -23,22 +23,8 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
     }
 
     @Override
-    public Boolean isUserDataValid(String username, String password, String rePassword) throws InvalidDataException {
-        return validatePasswordFormat(password) && isPasswordConfirmed(password, rePassword) && isUsernameFree(username);
-    }
-
-    private Boolean validatePasswordFormat(String password) throws InvalidDataException {
-        if (password.length() < 8) {
-            throw new InvalidDataException("Password is too short. Minimum size is 8 symbols.");
-        }
-        return true;
-    }
-
-    private Boolean isPasswordConfirmed(String password, String rePassword) throws InvalidDataException {
-        if (!password.equals(rePassword)) {
-            throw new InvalidDataException("Passwords mismatch.");
-        }
-        return true;
+    public Boolean isUserDataValid(String username) throws InvalidDataException {
+        return isUsernameFree(username);
     }
 
     private Boolean isUsernameFree(final String username) throws InvalidDataException {
@@ -56,7 +42,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
         });
 
         if (!users.isEmpty()) {
-            throw new InvalidDataException("Username is busy ! Please pick another one.");
+            throw new InvalidDataException("Избраното от Вас потребителски име е заето, моля изберете друго.");
         }
         return true;
     }

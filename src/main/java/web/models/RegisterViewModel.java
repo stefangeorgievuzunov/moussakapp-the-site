@@ -3,7 +3,6 @@ package web.models;
 public class RegisterViewModel {
     private String username;
     private String password;
-    private String rePassword;
     private String firstName;
     private String lastName;
 
@@ -21,14 +20,6 @@ public class RegisterViewModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRePassword() {
-        return rePassword;
-    }
-
-    public void setRePassword(String rePassword) {
-        this.rePassword = rePassword;
     }
 
     public String getFirstName() {
