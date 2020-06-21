@@ -34,6 +34,12 @@ $(document).ready(function () {
                     contentType: 'application/json;charset=utf-8',
 
                     success: function (data) {
+                        if (data.success){
+                            window.location.href=data.redirect;
+                        }else{
+                            $("#error").html(data.error).show();
+                            console.log(data.error)
+                        }
                         console.log(data);
                     },
                     error: function (msg) {

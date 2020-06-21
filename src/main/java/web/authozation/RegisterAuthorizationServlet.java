@@ -44,6 +44,7 @@ public class RegisterAuthorizationServlet extends HttpServlet {
             }
         }
 
+        response.setContentType("application/json");
         json.write(response.getWriter(),registerResponse);
     }
 

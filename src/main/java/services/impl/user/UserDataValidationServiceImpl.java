@@ -42,7 +42,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
         });
 
         if (!users.isEmpty()) {
-            throw new InvalidDataException("Избраното от Вас потребителски име е заето, моля изберете друго.");
+            throw new InvalidDataException("Потребителското име е заето, моля посочете друго !");
         }
         return true;
     }
