@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    @Inject private  UserActionService userActionService;
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,13 +24,7 @@ public class RegisterServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
 
-        try {
-            userActionService.register(username,password,rePassword,firstName,lastName);
-            response.sendRedirect("/login");
-        } catch (InvalidDataException e) {
-            e.printStackTrace();
-            doGet(request,response);
-        }
+
     }
 
     @Override

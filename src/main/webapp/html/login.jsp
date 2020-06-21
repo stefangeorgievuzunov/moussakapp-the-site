@@ -47,21 +47,15 @@
             </div>
             <div class="col-md-6">
                 <div class="form-login">
-                    <form method="post" action="${pageContext.request.contextPath}/login" class="needs-validation w-100 p-3" novalidate>
+                    <form method="post" action="${pageContext.request.contextPath}/login">
                         <div class="form-group">
-                            <label for="validationCustomUsername">Потребителско име</label>
+                            <label for="validationCustomUsername">Потребителско име<span class="text-danger">*</span></label>
                             <input type="email" class="form-control" id="validationCustomUsername" name="username" placeholder="e-mail" required>
-                            <div class="invalid-feedback">
-                                Полето е задължително !
-                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="validationCustomPassword">Парола</label>
+                            <label for="validationCustomPassword">Парола<span class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="validationCustomPassword" name="password" placeholder="Поне 8 символа" required>
-                            <div class="invalid-feedback">
-                                Полето е задължително !
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-xs-6 text-left">

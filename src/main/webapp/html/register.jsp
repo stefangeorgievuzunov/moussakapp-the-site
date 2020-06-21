@@ -49,71 +49,70 @@
             </div>
             <div class="col-md-6">
                 <div class="form-login">
-                    <div class="form-group">
+                    <form method="post" action="" id="register">
+                        <div class="form-group">
+                            <div class="row">
+                                <h3 id="error" class="text-danger"></h3>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="validationCustomUsername">Потребителско име <span
+                                        class="text-danger"> *</span></label>
+                                <input type="email" class="form-control" id="validationCustomUsername" name="username"
+                                       placeholder="e-mail" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="w-50 p-1">
+                                    <label for="validationCustomFirstName">Първо име <span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="validationCustomFirstName"
+                                           name="firstName"
+                                           placeholder="Първо име" required>
+                                </div>
+                                <div class="w-50 p-1">
+                                    <label for="validationCustomLastName">Фамилно име <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="validationCustomLastName"
+                                           name="lastName"
+                                           placeholder="Фамилно име" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="w-50 p-1">
+                                    <label for="validationCustomPassword">Парола <span
+                                            class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="validationCustomPassword"
+                                           name="password" placeholder="Поне 8 символа" required>
+                                </div>
+                                <div class="w-50 p-1">
+                                    <label for="validationCustomRePassword">Повторете паролата <span
+                                            class="text-danger">*</span></label>
+                                    <input type="password" class="form-control" id="validationCustomRePassword"
+                                           name="rePassword" placeholder="Поне 8 символа" required>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
-                            <label for="validationCustomUsername">Потребителско име</label>
-                            <input type="email" class="form-control" id="validationCustomUsername" name="username"
-                                   placeholder="e-mail" required>
-                            <div class="invalid-feedback">
-                                Полето е задължително !
+                            <div class="col-md-6 col-xs-6 text-left">
+                                <button type="submit" class="btn btn-primary">Изпрати</button>
+                            </div>
+                            <div class="col-md-6 col-xs-6 text-right">
+                                <i class="far fa-question-circle"></i> <a
+                                    href="${pageContext.request.contextPath}/login">Вече
+                                имам акаунт</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="w-50 p-1">
-                                <label for="validationCustomFirstName">Първо име</label>
-                                <input type="text" class="form-control" id="validationCustomFirstName" name="firstName"
-                                       placeholder="Първо име" required>
-                                <div class="invalid-feedback">
-                                    Полето е задължително !
-                                </div>
-                            </div>
-                            <div class="w-50 p-1">
-                                <label for="validationCustomLastName">Фамилно име</label>
-                                <input type="text" class="form-control" id="validationCustomLastName" name="lastName"
-                                       placeholder="Фамилно име" required>
-                                <div class="invalid-feedback">
-                                    Полето е задължително !
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="w-50 p-1">
-                                <label for="validationCustomPassword">Парола</label>
-                                <input type="password" class="form-control" id="validationCustomPassword"
-                                       name="password" placeholder="Поне 8 символа" required>
-                                <div class="invalid-feedback">
-                                    Полето е задължително !
-                                </div>
-                            </div>
-                            <div class="w-50 p-1">
-                                <label for="validationCustomRePassword">Повторете паролата</label>
-                                <input type="password" class="form-control" id="validationCustomRePassword"
-                                       name="rePassword" placeholder="Поне 8 символа" required>
-                                <div class="invalid-feedback">
-                                    Полето е задължително !
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-xs-6 text-left">
-                            <button type="submit" class="btn  btn-primary">Изпрати</button>
-                        </div>
-                        <div class="col-md-6 col-xs-6 text-right">
-                            <i class="far fa-question-circle"></i> <a href="${pageContext.request.contextPath}/login">Вече
-                            имам акаунт</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/register_ajax.js"></script>
 </body>
 </html>
 

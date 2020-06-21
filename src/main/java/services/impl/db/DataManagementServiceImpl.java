@@ -37,7 +37,7 @@ public class DataManagementServiceImpl implements DataManagementService {
     @Override
     public <T, V> List<V> select(Specification<T, V> specification) {
         try {
-            if (specification.entityType.getAnnotation(Entity.class) != null) {
+            if (specification!=null && specification.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
                 CriteriaQuery<V> criteriaQuery = criteriaBuilder.createQuery(specification.returnType);

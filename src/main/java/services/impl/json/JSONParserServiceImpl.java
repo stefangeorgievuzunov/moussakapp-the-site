@@ -15,6 +15,7 @@ public class JSONParserServiceImpl implements JSONParserService {
     public JSONParserServiceImpl(Gson gson){
         this.gson = gson;
     }
+
     @Override
     public <T> T read(BufferedReader reader, Class<T> clazz) throws IOException {
         String line;

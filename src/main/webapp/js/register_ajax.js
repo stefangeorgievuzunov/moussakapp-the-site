@@ -1,22 +1,47 @@
-async function onSubmit() {
-    debugger
+$(document).ready(function () {
 
-    let username=document.getElementById("validationCustomUsername");
-    let password=document.getElementById("validationCustomPassword");
-    let rePassword=document.getElementById("validationCustomRePassword");
-    let firstName=document.getElementById("validationCustomFirstName");
-    let lastName=document.getElementById("validationCustomLastName");
+    $("#register").submit(function (e) {
+        e.preventDefault();
 
-    const  data={
-        username:$("#validationCustomUsername"),
-        password:$("#validationCustomPassword"),
-        rePassword:$("#validationCustomRePassword"),
-        firstName:$("#validationCustomFirstName"),
-        lastName:$("#validationCustomLastName")
-    }
+        let username = $("#validationCustomUsername").val();
+        let password = $("#validationCustomPassword").val();
+        let rePassword = $("#validationCustomRePassword").val();
+        let firstName = $("#validationCustomFirstName").val();
+        let lastName = $("#validationCustomLastName").val();
 
+        if (password.length < 8) {
+            $("#error").html("Паролата трябва да състои от поне 8 символа")
+        } else {
+            if (password !== rePassword) {
+                $("#error").html("Паролите не съвпадат")
+            } else {
+                $("#error").hide();
 
-   $.post("/register/authorization",function (data) {
+                const data = {
+                    username: username,
+                    password: password,
+                    rePassword: rePassword,
+                    firstName: firstName,
+                    lastName: lastName
+                }
 
-   })
-}
+                console.log(data);
+
+                $.ajax({
+                    url: '/register/authorization',
+                    type: 'post',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    contentType: 'application/json',
+
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (msg) {
+                        alert('error');
+                    }
+                });
+            }
+        }
+    })
+});
