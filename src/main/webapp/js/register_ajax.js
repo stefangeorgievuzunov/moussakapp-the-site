@@ -3,19 +3,29 @@ $(document).ready(function () {
     $("#register").submit(function (e) {
         e.preventDefault();
 
+        let spinner = $("#spinner");
+        spinner.show();
+
         let username = $("#validationCustomUsername").val();
         let password = $("#validationCustomPassword").val();
         let rePassword = $("#validationCustomRePassword").val();
         let firstName = $("#validationCustomFirstName").val();
         let lastName = $("#validationCustomLastName").val();
 
+        let message = $("#message");
+        message.addClass("text-danger");
+
         if (password.length < 8) {
-            $("#error").html("Паролата трябва да състои от поне 8 символа")
+
+            spinner.hide();
+            message.html("Паролата трябва да състои от поне 8 символа");
         } else {
             if (password !== rePassword) {
-                $("#error").html("Паролите не съвпадат")
+
+                spinner.hide();
+                message.html("Паролите не съвпадат");
             } else {
-                $("#error").hide();
+                message.hide();
 
                 const data = {
                     username: username,
@@ -24,23 +34,25 @@ $(document).ready(function () {
                     lastName: lastName
                 }
 
-                console.log(data);
-
                 $.ajax({
                     url: '/register/authorization',
                     type: 'post',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     contentType: 'application/json;charset=utf-8',
-
                     success: function (data) {
-                        if (data.success){
-                            window.location.href=data.redirect;
-                        }else{
-                            $("#error").html(data.error).show();
-                            console.log(data.error)
+                        spinner.hide();
+
+                        if (data.success) {
+                            message.removeClass("text-danger");
+                            message.addClass("text-success");
+                            message.html("Вие се регистрирахте успешно !").show();
+                            message.delay(4000);
+
+                            window.location.href = data.redirect;
+                        } else {
+                            message.html(data.error).show();
                         }
-                        console.log(data);
                     },
                     error: function (msg) {
                         alert('error');

@@ -1,5 +1,8 @@
 package web.models.response;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 public class RegisterResponse {
     private Boolean success;
     private String redirect;

@@ -9,10 +9,10 @@
     <title>Регистрация</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="sticky">
 <jsp:include page="header.jsp"/>
-
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="http://placehold.it/1400x300"
          data-natural-width="1400" data-natural-height="300">
     <div id="sub_header">
@@ -52,7 +52,7 @@
                     <form method="post" action="" id="register">
                         <div class="form-group">
                             <div class="row">
-                                <h3 id="error" class="text-danger"></h3>
+                                <h3 id="message"></h3>
                             </div>
                         </div>
                         <div class="form-group">
@@ -97,7 +97,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-xs-6 text-left">
-                                <button type="submit" class="btn btn-primary">Изпрати</button>
+                                <button type="submit" class="btn btn-primary"><i id="spinner"
+                                                                                 class="fa fa-refresh fa-spin"
+                                                                                 style="display:none"></i> Изпрати
+                                </button>
                             </div>
                             <div class="col-md-6 col-xs-6 text-right">
                                 <i class="far fa-question-circle"></i> <a

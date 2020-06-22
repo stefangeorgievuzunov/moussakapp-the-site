@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class UserDataValidationServiceImpl implements UserDataValidationService {
@@ -27,7 +28,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
         return isUsernameFree(username);
     }
 
-    private Boolean isUsernameFree(final String username) throws InvalidDataException {
+    private Boolean isUsernameFree(final String username) throws InvalidDataException{
 
         List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User, User>(User.class,User.class) {
             @Override
@@ -42,7 +43,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
         });
 
         if (!users.isEmpty()) {
-            throw new InvalidDataException("Потребителското име е заето, моля посочете друго !");
+            throw new InvalidDataException("Потребителското име е заето, моля посочете друго");
         }
         return true;
     }

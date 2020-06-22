@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet("/register/authorization")
 public class RegisterAuthorizationServlet extends HttpServlet {
@@ -44,7 +46,7 @@ public class RegisterAuthorizationServlet extends HttpServlet {
             }
         }
 
-        response.setContentType("application/json");
+        response.setContentType("application/json; charset=utf-8");
         json.write(response.getWriter(),registerResponse);
     }
 
