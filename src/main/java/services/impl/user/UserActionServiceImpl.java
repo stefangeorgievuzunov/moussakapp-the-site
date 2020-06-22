@@ -1,4 +1,5 @@
 package services.impl.user;
+
 import db.User;
 
 import exceptions.InvalidDataException;
@@ -21,7 +22,7 @@ public class UserActionServiceImpl implements UserActionService {
     private final PasswordHashingService passwordHashingService;
 
     @Inject
-    public UserActionServiceImpl(ModelMapper modelMapper,DataManagementService dataManagementService, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
+    public UserActionServiceImpl(ModelMapper modelMapper, DataManagementService dataManagementService, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
         this.modelMapper = modelMapper;
         this.dataManagementService = dataManagementService;
         this.userDataValidationService = userDataValidationService;
@@ -32,7 +33,7 @@ public class UserActionServiceImpl implements UserActionService {
     public void register(String username, String password, String firstName, String lastName) throws InvalidDataException {
         if (userDataValidationService.isUserDataValid(username)) {
 
-            User user=new User();
+            User user = new User();
             user.setUsername(username);
             user.setPassword(passwordHashingService.hash(password));
             user.setFirstName(firstName);
@@ -45,7 +46,7 @@ public class UserActionServiceImpl implements UserActionService {
     @Override
     public UserServiceModel login(final String username, String password) throws InvalidDataException {
 
-        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User,User>(User.class,User.class) {
+        List<User> users = dataManagementService.select(new DataManagementServiceImpl.Specification<User, User>(User.class, User.class) {
             @Override
             protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
                 return null;
@@ -53,19 +54,19 @@ public class UserActionServiceImpl implements UserActionService {
 
             @Override
             protected Predicate where(Root<User> root, CriteriaBuilder builder) {
-                return builder.equal(root.get("username"),username);
+                return builder.equal(root.get("username"), username);
             }
         });
 
-        if(!users.isEmpty()){
-            User user=users.get(0);
+        if (!users.isEmpty()) {
+            User user = users.get(0);
 
-            if(!user.getPassword().equals(passwordHashingService.hash(password))){
-                throw new InvalidDataException("Wrong password. Please try again.");
+            if (!user.getPassword().equals(passwordHashingService.hash(password))) {
+                throw new InvalidDataException("Паролата е грешна, моля опитайте отново!");
             }
-            return modelMapper.map(user,UserServiceModel.class);
-        }else{
-            throw new InvalidDataException("User with such username doesn't exist. Please try again.");
+            return modelMapper.map(user, UserServiceModel.class);
+        } else {
+            throw new InvalidDataException("Потребител с такова име не съществува, моля опитайте отново!");
         }
     }
 }

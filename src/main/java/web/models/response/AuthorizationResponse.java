@@ -3,12 +3,12 @@ package web.models.response;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-public class RegisterResponse {
+public class AuthorizationResponse {
     private Boolean success;
     private String redirect;
     private String error;
 
-    public RegisterResponse() {
+    public AuthorizationResponse() {
         success=false;
         redirect="";
         error="";

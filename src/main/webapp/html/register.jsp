@@ -97,9 +97,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-xs-6 text-left">
-                                <button type="submit" class="btn btn-primary"><i id="spinner"
-                                                                                 class="fa fa-refresh fa-spin"
-                                                                                 style="display:none"></i> Изпрати
+                                <button type="submit" class="btn btn-primary">
+                                    <i id="spinner"
+                                       class="fa fa-refresh fa-spin"
+                                       style="display:none"></i> Изпрати
                                 </button>
                             </div>
                             <div class="col-md-6 col-xs-6 text-right">

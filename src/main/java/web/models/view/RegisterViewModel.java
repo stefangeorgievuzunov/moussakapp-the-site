@@ -1,4 +1,4 @@
-package web.models;
+package web.models.view;
 
 public class RegisterViewModel {
     private String username;

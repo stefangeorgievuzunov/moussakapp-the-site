@@ -3,18 +3,16 @@ package web.authozation;
 import exceptions.InvalidDataException;
 import services.JSONParserService;
 import services.UserActionService;
-import web.models.RegisterViewModel;
-import web.models.response.RegisterResponse;
+import web.models.view.RegisterViewModel;
+import web.models.response.AuthorizationResponse;
 
 import javax.inject.Inject;
-import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 @WebServlet("/register/authorization")
 public class RegisterAuthorizationServlet extends HttpServlet {
@@ -24,34 +22,35 @@ public class RegisterAuthorizationServlet extends HttpServlet {
     private JSONParserService json;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        RegisterResponse registerResponse=new RegisterResponse();
+        AuthorizationResponse authorizationResponse = new AuthorizationResponse();
 
         try {
-            RegisterViewModel model=json.read(request.getReader(),RegisterViewModel.class);
+            RegisterViewModel model = json.read(request.getReader(), RegisterViewModel.class);
 
-            if (model!=null){
-                userActionService.register(model.getUsername(),model.getPassword(),model.getFirstName(),model.getLastName());
+            if (model != null) {
+                userActionService.register(model.getUsername(), model.getPassword(), model.getFirstName(), model.getLastName());
 
-                registerResponse.setRedirect("/login");
-                registerResponse.setSuccess(true);
+                authorizationResponse.setRedirect("/login");
+                authorizationResponse.setSuccess(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            if (e instanceof InvalidDataException){
-                registerResponse.setError(e.getMessage());
-            }else{
-                registerResponse.setError("Something went wrong.. :(");
+
+            if (e instanceof InvalidDataException) {
+                authorizationResponse.setError(e.getMessage());
+            } else {
+                authorizationResponse.setError("Something went wrong.. :(");
             }
         }
 
         response.setContentType("application/json; charset=utf-8");
-        json.write(response.getWriter(),registerResponse);
+        json.write(response.getWriter(), authorizationResponse);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/login");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("/register");
     }
 }

@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -8,11 +7,14 @@
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
     <title>Влизане в системата</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="sticky">
 <jsp:include page="header.jsp"/>
-<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="http://placehold.it/1400x300" data-natural-width="1400" data-natural-height="300">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="http://placehold.it/1400x300"
+         data-natural-width="1400" data-natural-height="300">
     <div id="sub_header">
         <div class="container" id="sub_content">
             <div class="row">
@@ -47,19 +49,31 @@
             </div>
             <div class="col-md-6">
                 <div class="form-login">
-                    <form method="post" action="${pageContext.request.contextPath}/login">
+                    <form method="post" action="" id="login">
                         <div class="form-group">
-                            <label for="validationCustomUsername">Потребителско име<span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="validationCustomUsername" name="username" placeholder="e-mail" required>
+                            <div class="row">
+                                <h3 id="message"></h3>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="validationCustomUsername">Потребителско име<span
+                                    class="text-danger"> *</span></label>
+                            <input type="email" class="form-control" id="validationCustomUsername" name="username"
+                                   placeholder="e-mail" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="validationCustomPassword">Парола<span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="validationCustomPassword" name="password" placeholder="Поне 8 символа" required>
+                            <label for="validationCustomPassword">Парола<span class="text-danger"> *</span></label>
+                            <input type="password" class="form-control" id="validationCustomPassword" name="password"
+                                   placeholder="Поне 8 символа" required>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-xs-6 text-left">
-                                <button type="submit" class="btn  btn-primary">Влез</button>
+                                <button type="submit" class="btn  btn-primary">
+                                    <i id="spinner"
+                                       class="fa fa-refresh fa-spin"
+                                       style="display:none"></i> Влез
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -69,6 +83,7 @@
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/login_ajax.js"></script>
 </body>
 </html>
 

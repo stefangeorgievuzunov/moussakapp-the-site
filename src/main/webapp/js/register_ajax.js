@@ -47,9 +47,11 @@ $(document).ready(function () {
                             message.removeClass("text-danger");
                             message.addClass("text-success");
                             message.html("Вие се регистрирахте успешно !").show();
-                            message.delay(4000);
 
-                            window.location.href = data.redirect;
+                            setInterval(function () {
+                                window.location.href = data.redirect;
+                            },5000);
+
                         } else {
                             message.html(data.error).show();
                         }
