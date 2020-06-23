@@ -13,11 +13,12 @@
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
- <title>Нова рецепта</title>
+    <title>Нова рецепта</title>
 </head>
 <body class="sticky">
 <jsp:include page="header.jsp"/>
-<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="http://placehold.it/1400x300" data-natural-width="1400" data-natural-height="300">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="http://placehold.it/1400x300"
+         data-natural-width="1400" data-natural-height="300">
     <div id="sub_header">
         <div class="container" id="sub_content">
             <div class="row">
@@ -46,10 +47,11 @@
             <form method="post" action="${pageContext.request.contextPath}/admin/new/recipe" class="needs-validation">
                 <div class="col-md-8">
                     <div class="form-group">
-                      <div class="row">
-                          <label for="validationCustom01">Заглавие</label>
-                          <input type="text" id="validationCustom01" name="recipeTitle" class="form-control" placeholder="Заглавие на рецепта" required>
-                      </div>
+                        <div class="row">
+                            <label for="validationCustom01">Заглавие</label>
+                            <input type="text" id="validationCustom01" name="recipeTitle" class="form-control"
+                                   placeholder="Заглавие на рецепта" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Описание</label>
@@ -60,25 +62,31 @@
                             <div class="row-recipe-ingredient">
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
+                                    <input type="text" class="form-control" placeholder="Съставки"
+                                           name="recipe_ingredient[]">
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
+                                    <input type="text" class="form-control" placeholder="Съставки"
+                                           name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
+                                    <input type="text" class="form-control" placeholder="Съставки"
+                                           name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-ingredient">
                                     <i class="ic icon-weight"></i>
-                                    <input type="text" class="form-control" placeholder="Съставки" name="recipe_ingredient[]">
+                                    <input type="text" class="form-control" placeholder="Съставки"
+                                           name="recipe_ingredient[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-addnew-ingredient"><i class="far fa-plus-square"></i> Добави нова съставка</button>
+                            <button type="button" class="btn btn-addnew-ingredient"><i class="far fa-plus-square"></i>
+                                Добави нова съставка
+                            </button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -86,25 +94,31 @@
                             <div class="row-recipe-instructions">
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
+                                    <input type="text" class="form-control" placeholder="Инструкции"
+                                           name="recipe_instructions[]">
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
+                                    <input type="text" class="form-control" placeholder="Инструкции"
+                                           name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
+                                    <input type="text" class="form-control" placeholder="Инструкции"
+                                           name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                                 <div class="col-recipe-instructions">
                                     <i class="ic icon-manual-madrab"></i>
-                                    <input type="text" class="form-control" placeholder="Инструкции" name="recipe_instructions[]">
+                                    <input type="text" class="form-control" placeholder="Инструкции"
+                                           name="recipe_instructions[]">
                                     <span class="remove-recipe-col"><i class="far fa-times-circle"></i></span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-addnew-instruction"><i class="far fa-plus-square"></i> Добави нова инструкция</button>
+                            <button type="button" class="btn btn-addnew-instruction"><i class="far fa-plus-square"></i>
+                                Добави нова инструкция
+                            </button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -118,26 +132,31 @@
                     <div class="theiaStickySidebar">
                         <div class="form-group">
                             <div class="add-photo">
-                                <label class="icon-picture gray">
-                                    <input type="file" name="picture" id="picture">
-                                </label>
+                                <form method="post" action="" id="upload" enctype="multipart/form-data">
+                                    <label class="icon-picture gray">
+                                        <input type="file" name="files" id="picture" accept="image/*">
+                                    </label>
+                                </form>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="preptime">Време за приготвяне /минути/</label>
-                            <input type="text" id="preptime" name="prepTime" class="form-control" placeholder="Време за приготвяне" required>
+                            <input type="text" id="preptime" name="prepTime" class="form-control"
+                                   placeholder="Време за приготвяне" required>
                         </div>
                         <div class="form-group">
                             <label for="cooktime">Време за готвене /минути/</label>
-                            <input type="text" id="cooktime" name="cookTime" class="form-control" placeholder="Време за готвене" required>
+                            <input type="text" id="cooktime" name="cookTime" class="form-control"
+                                   placeholder="Време за готвене" required>
                         </div>
                         <div class="form-group">
                             <label for="numberofservings">Порции</label>
-                            <input type="text" id="numberofservings" name="portions" class="form-control" placeholder="Брой порции" required>
+                            <input type="text" id="numberofservings" name="portions" class="form-control"
+                                   placeholder="Брой порции" required>
                         </div>
                         <div class="form-group">
                             <div class="recipe-button">
-                                <button type="submit" class="btn btn-save">Запази</button>
+                                <button type="submit" class="btn btn-save" id="save">Запази</button>
                             </div>
                         </div>
                     </div>
@@ -147,5 +166,6 @@
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/add_photo_ajax.js"></script>
 </body>
 </html>
