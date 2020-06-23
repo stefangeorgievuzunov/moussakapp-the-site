@@ -95,7 +95,7 @@
     jQuery(".btn-addnew-instruction").on('click', function () {
         let data = "<div class=\"col-recipe-instructions\">" +
             "<i class=\"ic icon-manual-madrab\"></i>" +
-            "<input type=\"text\" class=\"form-control\" placeholder=\"Инструкции\" name=\"recipe_instructions[]\">" +
+            "<input type=\"text\" class=\"form-control\" placeholder=\"Инструкции\" name=\"recipe_instructions[]\"/>" +
             "<span class=\"remove-recipe-col\"><i class=\"far fa-times-circle\"></i></span>" +
             "</div>";
 
@@ -112,8 +112,12 @@
         jQuery(".row-recipe-ingredient").append(data);
     });
 
-    // remove-recipe-col
-    jQuery(".remove-recipe-col").on('click', function () {
+    jQuery(".row-recipe-ingredient").on('click',".remove-recipe-col",function () {
+        console.log("CLICKED");
+        jQuery(this).parent().remove();
+        return false;
+    });
+    jQuery(".row-recipe-instructions").on('click',".remove-recipe-col",function () {
         console.log("CLICKED");
         jQuery(this).parent().remove();
         return false;

@@ -43,15 +43,12 @@
             <hr class="divider">
         </div>
         <div class="row">
-            <form method="post" action="${pageContext.request.contextPath}/admin/new/recipe" class="needs-validation" novalidate>
+            <form method="post" action="${pageContext.request.contextPath}/admin/new/recipe" class="needs-validation">
                 <div class="col-md-8">
                     <div class="form-group">
                       <div class="row">
-                          <label for="validationCustom01">Заглавие *</label>
+                          <label for="validationCustom01">Заглавие</label>
                           <input type="text" id="validationCustom01" name="recipeTitle" class="form-control" placeholder="Заглавие на рецепта" required>
-                          <div class="invalid-feedback">
-                              Полето е задължително !
-                          </div>
                       </div>
                     </div>
                     <div class="form-group">
