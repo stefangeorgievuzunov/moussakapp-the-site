@@ -1,9 +1,9 @@
-package web;
+package web.ajax;
 
 import exceptions.InvalidDataException;
-import org.apache.commons.io.FilenameUtils;
-import org.jboss.weld.util.bytecode.ClassFileUtils;
+import services.JSONParserService;
 import services.UploadImageService;
+import web.models.response.AjaxResponse;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,9 +21,13 @@ import java.io.IOException;
 public class AdminNewRecipeUploadImageServlet extends HttpServlet {
     @Inject
     private UploadImageService uploadImageService;
+    @Inject
+    private JSONParserService json;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        AjaxResponse ajaxResponse =new AjaxResponse();
 
         try {
             if (uploadImageService.isCorrect(request.getPart("uploadedFile"))) {
@@ -32,10 +36,13 @@ public class AdminNewRecipeUploadImageServlet extends HttpServlet {
         } catch (InvalidDataException e) {
             e.printStackTrace();
         }
+
+        response.setContentType("application/json; charset=utf-8");
+        json.write(response.getWriter(), ajaxResponse);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendError(HttpServletResponse.SC_FORBIDDEN); //403
     }
 }

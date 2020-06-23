@@ -1,10 +1,10 @@
-package web.authozation;
+package web.ajax;
 
 import exceptions.InvalidDataException;
 import services.JSONParserService;
 import services.UserActionService;
 import services.models.UserServiceModel;
-import web.models.response.AuthorizationResponse;
+import web.models.response.AjaxResponse;
 import web.models.view.LoginViewModel;
 
 
@@ -25,7 +25,7 @@ public class LoginAuthorizationServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        AuthorizationResponse authorizationResponse = new AuthorizationResponse();
+        AjaxResponse ajaxResponse = new AjaxResponse();
 
         try {
             LoginViewModel model = json.read(request.getReader(), LoginViewModel.class);
@@ -35,22 +35,22 @@ public class LoginAuthorizationServlet extends HttpServlet {
 
                 request.getSession().setAttribute("loggedUser", userServiceModel);
 
-                authorizationResponse.setRedirect("/home");
-                authorizationResponse.setSuccess(true);
+                ajaxResponse.setUrl("/home");
+                ajaxResponse.setSuccess(true);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
 
             if (e instanceof InvalidDataException) {
-                authorizationResponse.setError(e.getMessage());
+                ajaxResponse.setError(e.getMessage());
             } else {
-                authorizationResponse.setError("Something went wrong.. :(");
+                ajaxResponse.setError("Something went wrong.. :(");
             }
         }
 
         response.setContentType("application/json; charset=utf-8");
-        json.write(response.getWriter(), authorizationResponse);
+        json.write(response.getWriter(), ajaxResponse);
     }
 
     @Override

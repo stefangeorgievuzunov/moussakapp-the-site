@@ -27,7 +27,7 @@ $(document).ready(function () {
                 spinner.hide();
 
                 if (data.success) {
-                    window.location.href = data.redirect;
+                    window.location.href = data.url;
                 } else {
                     message.html(data.error).show();
                 }

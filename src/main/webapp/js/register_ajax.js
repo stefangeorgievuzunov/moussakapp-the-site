@@ -49,7 +49,7 @@ $(document).ready(function () {
                             message.html("Вие се регистрирахте успешно !").show();
 
                             setInterval(function () {
-                                window.location.href = data.redirect;
+                                window.location.href = data.url;
                             },5000);
 
                         } else {

@@ -64,8 +64,8 @@ public class DbServiceImpl implements DbService {
 
 
     public abstract static class Query<T, V> {
-        protected Class<T> entityType;
-        protected Class<V> returnType;
+        private final Class<T> entityType;
+        private final Class<V> returnType;
 
         private Root<T> root;
         private CriteriaBuilder builder;

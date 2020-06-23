@@ -26,17 +26,17 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
         return isUsernameFree(username);
     }
 
-    private Boolean isUsernameFree(final String username) throws InvalidDataException{
+    private Boolean isUsernameFree(final String username) throws InvalidDataException {
 
-        List<User> users= dbService.select(new DbServiceImpl.Query<User, User>(User.class,User.class) {
+        List<User> users = dbService.select(new DbServiceImpl.Query<User, User>(User.class, User.class) {
             @Override
-            protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
-                return root;
+            protected Selection<? extends User> select() {
+                return root();
             }
 
             @Override
-            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
-                return builder.equal(root.get("username"),username);
+            protected Predicate where() {
+                return builder().equal(root().get("username"), username);
             }
         });
 

@@ -17,10 +17,10 @@ public class UploadImageServiceImpl implements UploadImageService {
 
     @Override
     public Boolean isCorrect(Part file) throws InvalidDataException {
-        String filename = Paths.get(file.getSubmittedFileName()).getFileName().toString();
+        String fileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
         File resource = Paths.get(Paths.get(file.getSubmittedFileName()).toString()).toFile();
 
-        if (!FilenameUtils.isExtension(filename, extensions)) {
+        if (!FilenameUtils.isExtension(fileName, extensions)) {
             throw new InvalidDataException("Избраният от Вас файл е с неподходящ формат.");
         }
 
