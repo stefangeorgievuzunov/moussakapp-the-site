@@ -134,7 +134,7 @@
                             <div class="add-photo">
                                 <form method="post" action="" id="upload" enctype="multipart/form-data">
                                     <label class="icon-picture gray">
-                                        <input type="file" name="files" id="picture" accept="image/*">
+                                        <input type="file" id="picture" accept="image/*">
                                     </label>
                                 </form>
                             </div>

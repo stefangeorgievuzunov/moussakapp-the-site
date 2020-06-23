@@ -1,8 +1,8 @@
 package web;
 
 import db.User;
-import services.DataManagementService;
-import services.impl.db.DataManagementServiceImpl;
+import services.DbService;
+import services.impl.db.DbServiceImpl;
 
 import javax.inject.Inject;
 import javax.persistence.criteria.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
     @Inject
-    DataManagementService dataManagementService;
+    DbService dbService;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,25 +26,25 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Long> data = dataManagementService.select(new DataManagementServiceImpl.Specification<User, Long>(User.class, Long.class) {
+        List<Long> data = dbService.select(new DbServiceImpl.Query<User, Long>(User.class, Long.class) {
             @Override
-            protected Selection<? extends Long> select(Root<User> root, CriteriaBuilder builder) {
-                return builder.count(root);
+            protected Selection<? extends Long> select() {
+                return builder().count(root());
             }
             @Override
-            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
+            protected Predicate where() {
                 return null;
             }
         });
 
-        List<User> users=dataManagementService.select(new DataManagementServiceImpl.Specification<User, User>(User.class,User.class) {
+        List<User> users= dbService.select(new DbServiceImpl.Query<User, User>(User.class,User.class) {
             @Override
-            protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
+            protected Selection<? extends User> select() {
                 return null;
             }
 
             @Override
-            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
+            protected Predicate where() {
                 return null;
             }
         });

@@ -51,6 +51,6 @@ public class RegisterAuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/register");
+        response.sendError(HttpServletResponse.SC_FORBIDDEN); //403
     }
 }

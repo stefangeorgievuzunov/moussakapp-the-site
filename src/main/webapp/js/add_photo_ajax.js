@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#picture").change(function () {
 
         let formData=new FormData($("#upload")[0]);
-        formData.append('uploaded', $('input[type=file]')[0].files[0]);
+        formData.append('uploadedFile', $('input[type=file]')[0].files[0]);
 
         $("#save").prop("disabled",true);
 

@@ -4,11 +4,11 @@ import db.User;
 
 import exceptions.InvalidDataException;
 import org.modelmapper.ModelMapper;
-import services.DataManagementService;
+import services.DbService;
 import services.PasswordHashingService;
 import services.UserActionService;
 import services.UserDataValidationService;
-import services.impl.db.DataManagementServiceImpl;
+import services.impl.db.DbServiceImpl;
 import services.models.UserServiceModel;
 
 import javax.inject.Inject;
@@ -17,14 +17,14 @@ import java.util.List;
 
 public class UserActionServiceImpl implements UserActionService {
     private final ModelMapper modelMapper;
-    private final DataManagementService dataManagementService;
+    private final DbService dbService;
     private final UserDataValidationService userDataValidationService;
     private final PasswordHashingService passwordHashingService;
 
     @Inject
-    public UserActionServiceImpl(ModelMapper modelMapper, DataManagementService dataManagementService, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
+    public UserActionServiceImpl(ModelMapper modelMapper, DbService dbService, UserDataValidationService userDataValidationService, PasswordHashingService passwordHashingService) {
         this.modelMapper = modelMapper;
-        this.dataManagementService = dataManagementService;
+        this.dbService = dbService;
         this.userDataValidationService = userDataValidationService;
         this.passwordHashingService = passwordHashingService;
     }
@@ -39,22 +39,22 @@ public class UserActionServiceImpl implements UserActionService {
             user.setFirstName(firstName);
             user.setLastName(lastName);
 
-            dataManagementService.persist(user);
+            dbService.persist(user);
         }
     }
 
     @Override
     public UserServiceModel login(final String username, String password) throws InvalidDataException {
 
-        List<User> users = dataManagementService.select(new DataManagementServiceImpl.Specification<User, User>(User.class, User.class) {
+        List<User> users = dbService.select(new DbServiceImpl.Query<User, User>(User.class, User.class) {
             @Override
-            protected Selection<? extends User> select(Root<User> root, CriteriaBuilder builder) {
+            protected Selection<? extends User> select() {
                 return null;
             }
 
             @Override
-            protected Predicate where(Root<User> root, CriteriaBuilder builder) {
-                return builder.equal(root.get("username"), username);
+            protected Predicate where() {
+                return builder().equal(root().get("username"), username);
             }
         });
 

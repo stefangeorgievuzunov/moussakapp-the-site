@@ -38,6 +38,7 @@ public class LoginAuthorizationServlet extends HttpServlet {
                 authorizationResponse.setRedirect("/home");
                 authorizationResponse.setSuccess(true);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -54,6 +55,6 @@ public class LoginAuthorizationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("/login");
+        response.sendError(HttpServletResponse.SC_FORBIDDEN); //403
     }
 }

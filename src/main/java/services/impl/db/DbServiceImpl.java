@@ -1,7 +1,7 @@
 package services.impl.db;
 
 import org.modelmapper.ModelMapper;
-import services.DataManagementService;
+import services.DbService;
 
 import javax.inject.Inject;
 import javax.persistence.Entity;
@@ -10,12 +10,12 @@ import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataManagementServiceImpl implements DataManagementService {
+public class DbServiceImpl implements DbService {
     private final EntityManager entityManager;
     private final ModelMapper modelMapper;
 
     @Inject
-    DataManagementServiceImpl(EntityManager entityManager, ModelMapper modelMapper) {
+    DbServiceImpl(EntityManager entityManager, ModelMapper modelMapper) {
         this.entityManager = entityManager;
         this.modelMapper = modelMapper;
     }
@@ -35,16 +35,18 @@ public class DataManagementServiceImpl implements DataManagementService {
     }
 
     @Override
-    public <T, V> List<V> select(Specification<T, V> specification) {
+    public <T, V> List<V> select(Query<T, V> query) {
         try {
-            if (specification!=null && specification.entityType.getAnnotation(Entity.class) != null) {
+            if (query != null && query.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 
-                CriteriaQuery<V> criteriaQuery = criteriaBuilder.createQuery(specification.returnType);
-                Root<T> root = criteriaQuery.from(specification.entityType);
+                CriteriaQuery<V> criteriaQuery = criteriaBuilder.createQuery(query.returnType);
 
-                Selection<? extends V> selection = specification.select(root, criteriaBuilder);
-                Predicate predicate = specification.where(root, criteriaBuilder);
+                query.root = criteriaQuery.from(query.entityType);
+                query.builder = criteriaBuilder;
+
+                Selection<? extends V> selection = query.select();
+                Predicate predicate = query.where();
 
                 if (predicate != null) {
                     criteriaQuery.where(predicate);
@@ -56,30 +58,42 @@ public class DataManagementServiceImpl implements DataManagementService {
             }
         } catch (Exception exception) {
             exception.printStackTrace();
-//            return new ArrayList<>();
         }
         return new ArrayList<>();
     }
 
 
-    public abstract static class Specification<T, V>{
+    public abstract static class Query<T, V> {
         protected Class<T> entityType;
         protected Class<V> returnType;
 
-        public Specification(Class<T> entityType, Class<V> returnType) {
+        private Root<T> root;
+        private CriteriaBuilder builder;
+
+        public Query(Class<T> entityType, Class<V> returnType) {
             this.entityType = entityType;
             this.returnType = returnType;
         }
-        protected  abstract Selection<? extends V> select(Root<T> root, CriteriaBuilder builder);
-        protected  abstract Predicate where(Root<T> root, CriteriaBuilder builder);
+
+        protected abstract Selection<? extends V> select();
+
+        protected abstract Predicate where();
+
+        protected Root<T> root() {
+            return root;
+        }
+
+        protected CriteriaBuilder builder() {
+            return builder;
+        }
     }
 
     @Override
-    public <T> void persist(T passedObject) {
+    public <T> void persist(T object) {
         try {
-            if (passedObject.getClass().getAnnotation(Entity.class) != null) {
+            if (object.getClass().getAnnotation(Entity.class) != null) {
                 entityManager.getTransaction().begin();
-                entityManager.persist(passedObject);
+                entityManager.persist(object);
                 entityManager.getTransaction().commit();
             }
         } catch (Exception exception) {

@@ -12,20 +12,20 @@ public class JSONParserServiceImpl implements JSONParserService {
     private final Gson gson;
 
     @Inject
-    public JSONParserServiceImpl(Gson gson){
+    public JSONParserServiceImpl(Gson gson) {
         this.gson = gson;
     }
 
     @Override
     public <T> T read(BufferedReader reader, Class<T> clazz) throws IOException {
         String line;
-        StringBuilder builder=new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-        while((line=reader.readLine())!=null){
+        while ((line = reader.readLine()) != null) {
             builder.append(line);
         }
 
-        return gson.fromJson(builder.toString(),clazz);
+        return gson.fromJson(builder.toString(), clazz);
     }
 
     @Override
