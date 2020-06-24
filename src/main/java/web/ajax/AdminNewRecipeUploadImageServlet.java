@@ -1,6 +1,7 @@
 package web.ajax;
 
 import exceptions.InvalidDataException;
+import org.apache.commons.io.FileUtils;
 import services.JSONParserService;
 import services.UploadImageService;
 import web.models.response.AjaxResponse;
@@ -12,8 +13,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 
 @MultipartConfig
@@ -27,14 +31,20 @@ public class AdminNewRecipeUploadImageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        AjaxResponse ajaxResponse =new AjaxResponse();
+        AjaxResponse ajaxResponse = new AjaxResponse();
 
         try {
-            if (uploadImageService.isCorrect(request.getPart("uploadedFile"))) {
-                System.out.println("HELLO FCKIN WORLD");
+            if (request.getPart("uploadedFile") != null && uploadImageService.isCorrect(request.getPart("uploadedFile"))) {
+                ajaxResponse.setSuccess(true);
             }
-        } catch (InvalidDataException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+
+            if (e instanceof InvalidDataException) {
+                ajaxResponse.setError(e.getMessage());
+            } else {
+                ajaxResponse.setError("Something went wrong.. :(");
+            }
         }
 
         response.setContentType("application/json; charset=utf-8");

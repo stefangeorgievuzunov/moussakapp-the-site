@@ -129,12 +129,18 @@
                     </div>
                 </div>
                 <aside class="col-md-4 sidebar sticky-sidebar">
+                    <div class="form-group">
+                        <div class="row">
+                            <h3 id="message"></h3>
+                            <img src="" alt="" width="200" height="200" id="image">
+                        </div>
+                    </div>
                     <div class="theiaStickySidebar">
                         <div class="form-group">
                             <div class="add-photo">
                                 <form method="post" action="" id="upload" enctype="multipart/form-data">
                                     <label class="icon-picture gray">
-                                        <input type="file" id="picture" accept="image/*">
+                                        <input type="file" id="picture">
                                     </label>
                                 </form>
                             </div>
