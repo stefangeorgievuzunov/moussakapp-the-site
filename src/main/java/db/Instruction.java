@@ -1,16 +1,13 @@
 package db;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-public class CuisineNationality {
+public class Instruction {
     private int id;
     private String name;
-    private List<Recipe> recipes;
-
-    public CuisineNationality() {
-    }
+    private Recipe recipe;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +28,13 @@ public class CuisineNationality {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "cuisineNationality")
-    public List<Recipe> getRecipes() {
-        return recipes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="recipe_id")
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }

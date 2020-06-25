@@ -50,7 +50,7 @@ $(document).ready(function () {
 
                             setInterval(function () {
                                 window.location.href = data.url;
-                            },5000);
+                            },3000);
 
                         } else {
                             message.html(data.error).show();

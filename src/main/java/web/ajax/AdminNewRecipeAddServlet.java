@@ -2,11 +2,13 @@ package web.ajax;
 
 import exceptions.InvalidDataException;
 import services.JSONParserService;
-import services.UploadImageService;
+import services.RecipeManagementService;
+
 import web.models.response.AjaxResponse;
 import web.models.view.RecipeViewModel;
 
 import javax.inject.Inject;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,29 +25,34 @@ import java.nio.charset.StandardCharsets;
 @WebServlet("/admin/new/recipe/add")
 public class AdminNewRecipeAddServlet extends HttpServlet {
     @Inject
-    private UploadImageService uploadImageService;
+    private RecipeManagementService recipeManagementService;
     @Inject
     private JSONParserService json;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Part jsonObject=request.getPart("json");
+        Part jsonObject = request.getPart("json");
 
-        RecipeViewModel recipeViewModel=json.read(new BufferedReader(new InputStreamReader(jsonObject.getInputStream(), StandardCharsets.UTF_8)),RecipeViewModel.class);
+        RecipeViewModel recipeViewModel = json.read(new BufferedReader(new InputStreamReader(jsonObject.getInputStream(), StandardCharsets.UTF_8)), RecipeViewModel.class);
 
-        AjaxResponse ajaxResponse= new AjaxResponse();
+        AjaxResponse ajaxResponse = new AjaxResponse();
 
         try {
-            if (request.getPart("uploadedFile") != null && uploadImageService.isCorrect(request.getPart("uploadedFile"))) {
-                ajaxResponse.setSuccess(true);
-                ajaxResponse.setUrl(recipeViewModel.getTitle());
-            }
+            Integer prepareTime = Integer.parseInt(recipeViewModel.getPrepareTime());
+            Integer cookingTime = Integer.parseInt(recipeViewModel.getCookingTime());
+            Integer servings = Integer.parseInt(recipeViewModel.getServings());
+
+            recipeManagementService.uploadRecipe(recipeViewModel.getTitle(), recipeViewModel.getDescription(), recipeViewModel.getIngredients(), recipeViewModel.getInstructions(), recipeViewModel.getCategory(), prepareTime, cookingTime, servings, request.getPart("uploadedFile"));
+            ajaxResponse.setSuccess(true);
+            ajaxResponse.setUrl("/home");
 
         } catch (Exception e) {
             e.printStackTrace();
 
             if (e instanceof InvalidDataException) {
                 ajaxResponse.setError(e.getMessage());
+            } else if (e instanceof NumberFormatException) {
+                ajaxResponse.setError("Полетата за приготвяне, готвене и порции, трябва да бъдат цели числа !");
             } else {
                 ajaxResponse.setError("Something went wrong.. :(");
             }

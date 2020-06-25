@@ -10,12 +10,13 @@ public class Recipe {
     private String title;
     private Integer prepareTime;
     private Integer cookingTime;
-    private Integer portions;
+    private Integer servings;
     private String description;
-    private Set<Ingredient> ingredients;
+    private List<Ingredient> ingredients;
+    private List<Instruction> instructions;
     private RecipeCategory category;
-    private CuisineNationality cuisineNationality;
     private Post post;
+    private byte[] image;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,12 +56,12 @@ public class Recipe {
     }
 
     @Column(nullable = false)
-    public Integer getPortions() {
-        return portions;
+    public Integer getServings() {
+        return servings;
     }
 
-    public void setPortions(Integer portions) {
-        this.portions = portions;
+    public void setServings(Integer portions) {
+        this.servings = portions;
     }
 
     @Column(nullable = false)
@@ -72,18 +73,22 @@ public class Recipe {
         this.description = description;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "recipe_ingredient",
-            joinColumns = {@JoinColumn(name = "recipe_id")},
-            inverseJoinColumns = {@JoinColumn(name = "ingredient_id")}
-    )
-    public Set<Ingredient> getIngredients() {
+    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.ALL})
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.ALL})
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
     }
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -96,22 +101,21 @@ public class Recipe {
         this.category = category;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cuisine_nationality_id")
-    public CuisineNationality getCuisineNationality() {
-        return cuisineNationality;
-    }
-
-    public void setCuisineNationality(CuisineNationality cuisineNationality) {
-        this.cuisineNationality = cuisineNationality;
-    }
-
-    @OneToOne(mappedBy = "recipe",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "recipe", fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     public Post getPost() {
         return post;
     }
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    @Column
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

@@ -11,7 +11,7 @@ $(document).ready(function () {
         let category=$("#category").val();
         let prepareTime=$("#prepareTime").val();
         let cookingTime=$("#cookingTime").val();
-        let portions=$("#servings").val();
+        let servings=$("#servings").val();
 
 
         console.log("INGREDIENTS: "+ingredients);
@@ -24,7 +24,7 @@ $(document).ready(function () {
             category:category,
             prepareTime:prepareTime,
             cookingTime:cookingTime,
-            portions:portions
+            servings:servings
         }
 
 
