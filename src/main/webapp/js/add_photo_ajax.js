@@ -15,7 +15,7 @@ $(document).ready(function () {
             message.hide();
 
             reader.onload = function (e) {
-                $("#image").attr('src', e.target.result);
+                $("#image").attr('src', e.target.result).show();
             }
 
             $.ajax({
@@ -40,7 +40,13 @@ $(document).ready(function () {
         }
     }
 
-    $("#picture").change(function () {
+    let picture = $("#picture");
+    picture.on('click touchstart', function () {
+        $("#image").hide();
+        $("#picture").val(null);
+    });
+
+    picture.change(function () {
         uploadImg(this);
     });
 });

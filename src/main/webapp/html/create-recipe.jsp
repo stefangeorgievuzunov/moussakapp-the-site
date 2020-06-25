@@ -129,13 +129,11 @@
                     </div>
                 </div>
                 <aside class="col-md-4 sidebar sticky-sidebar">
-                    <div class="form-group">
-                        <div class="row">
-                            <h3 id="message"></h3>
-                            <img src="" alt="" width="200" height="200" id="image">
-                        </div>
-                    </div>
                     <div class="theiaStickySidebar">
+                        <div class="form-group">
+                            <h3 id="message"></h3>
+                            <img src="" alt="" id="image" style="width: 200px ; height: 200px; object-fit: cover;">
+                        </div>
                         <div class="form-group">
                             <div class="add-photo">
                                 <form method="post" action="" id="upload" enctype="multipart/form-data">
