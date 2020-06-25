@@ -44,12 +44,13 @@
             <hr class="divider">
         </div>
         <div class="row">
-            <form method="post" action="${pageContext.request.contextPath}/admin/new/recipe" class="needs-validation">
+            <form method="post" action="" id="upload" enctype="multipart/form-data">
                 <div class="col-md-8">
                     <div class="form-group">
                         <div class="row">
-                            <label for="validationCustom01">Заглавие</label>
-                            <input type="text" id="validationCustom01" name="recipeTitle" class="form-control"
+                            <label for="title">Заглавие<span
+                                    class="text-danger"> *</span></label>
+                            <input type="text" id="title" name="recipeTitle" class="form-control"
                                    placeholder="Заглавие на рецепта" required>
                         </div>
                     </div>
@@ -122,7 +123,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="category">Категория *</label>
+                        <label for="category">Категория<span
+                                class="text-danger"> *</span></label>
                         <select class="form-control" id="category" required>
                             <option>Десерт</option>
                         </select>
@@ -136,26 +138,27 @@
                         </div>
                         <div class="form-group">
                             <div class="add-photo">
-                                <form method="post" action="" id="upload" enctype="multipart/form-data">
-                                    <label class="icon-picture gray">
-                                        <input type="file" id="picture">
-                                    </label>
-                                </form>
+                                <label class="icon-picture gray">
+                                    <input type="file" id="picture"/>
+                                </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="preptime">Време за приготвяне /минути/</label>
-                            <input type="text" id="preptime" name="prepTime" class="form-control"
+                            <label for="prepareTime">Време за приготвяне /минути/<span
+                                    class="text-danger"> *</span></label>
+                            <input type="text" id="prepareTime" name="prepTime" class="form-control"
                                    placeholder="Време за приготвяне" required>
                         </div>
                         <div class="form-group">
-                            <label for="cooktime">Време за готвене /минути/</label>
-                            <input type="text" id="cooktime" name="cookTime" class="form-control"
+                            <label for="cookingTime">Време за готвене /минути/<span
+                                    class="text-danger"> *</span></label>
+                            <input type="text" id="cookingTime" name="cookTime" class="form-control"
                                    placeholder="Време за готвене" required>
                         </div>
                         <div class="form-group">
-                            <label for="numberofservings">Порции</label>
-                            <input type="text" id="numberofservings" name="portions" class="form-control"
+                            <label for="servings">Порции<span
+                                    class="text-danger"> *</span></label>
+                            <input type="text" id="servings" name="servings" class="form-control"
                                    placeholder="Брой порции" required>
                         </div>
                         <div class="form-group">
@@ -170,6 +173,6 @@
     </div><!-- End container -->
 </div><!-- End white_bg -->
 <jsp:include page="footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/add_photo_ajax.js"></script>
+<script src="${pageContext.request.contextPath}/js/add_new_recipe_ajax.js"></script>
 </body>
 </html>
