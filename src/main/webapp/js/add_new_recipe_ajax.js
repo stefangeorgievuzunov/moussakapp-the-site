@@ -6,40 +6,38 @@ $(document).ready(function () {
     $("#upload").submit(function (e) {
         e.preventDefault();
 
-        let title = $("#title").val();
-        let description = $("#description").val();
-        let ingredients = $('input[name="recipe_ingredient[]"]').map(function () {
-            return $(this).val();
-        }).get();
-        let instructions = $('input[name="recipe_instructions[]"]').map(function () {
-            return $(this).val();
-        }).get();
-        let category = $("#category").val();
-        let prepareTime = $("#prepareTime").val();
-        let cookingTime = $("#cookingTime").val();
-        let servings = $("#servings").val();
+        let spinner = $("#spinner");
+        spinner.show();
 
+        let title=$("#title").val();
+        let description=$("#description").val();
+        let ingredients=$('input[name="recipe_ingredient[]"]').map(function(){return $(this).val();}).get();
+        let instructions=$('input[name="recipe_instructions[]"]').map(function(){return $(this).val();}).get();
+        let category=$("#category").val();
+        let prepareTime=$("#prepareTime").val();
+        let cookingTime=$("#cookingTime").val();
+        let servings=$("#servings").val();
 
-        console.log("INGREDIENTS: " + ingredients);
-
-        const data = {
-            title: title,
-            description: description,
-            ingredients: ingredients,
-            instructions: instructions,
-            category: category,
-            prepareTime: prepareTime,
-            cookingTime: cookingTime,
-            servings: servings
+        const data={
+            title:title,
+            description:description,
+            ingredients:ingredients,
+            instructions:instructions,
+            category:category,
+            prepareTime:prepareTime,
+            cookingTime:cookingTime,
+            servings:servings
         }
 
+        let message = $("#generalMessage");
+        message.addClass("text-danger");
 
         let formData = new FormData($("#upload")[0]);
 
         if (picture.get(0).files && picture.get(0).files[0]) {
             formData.append('uploadedFile', picture.get(0).files[0]);
         }
-        formData.append('json', JSON.stringify(data));
+        formData.append('json',JSON.stringify(data));
 
         $.ajax({
             url: '/admin/new/recipe/add',
@@ -48,12 +46,18 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (data) {
-                console.log(data);
+                spinner.hide();
+
                 if (data.success) {
-                    console.log(data);
-                    console.log(data.url);
+                    message.removeClass("text-danger");
+                    message.addClass("text-success");
+                    message.html("Рецептата бе създадена успешно !").show();
+
+                    setInterval(function () {
+                        window.location.href = data.url;
+                    },2000);
                 } else {
-                    console.log(data.error);
+                    message.html(data.error).show();
                 }
             },
             error: function (msg) {

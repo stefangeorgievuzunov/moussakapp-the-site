@@ -106,4 +106,20 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
 
         dbService.persist(recipe);
     }
+
+    @Override
+    public Long getTotalRecipes() {
+        List<Long> data = dbService.createQuery(new DbServiceImpl.Query<Recipe, Long>(Recipe.class, Long.class) {
+            @Override
+            protected Selection<? extends Long> select() {
+                return builder().count(root());
+            }
+            @Override
+            protected Predicate where() {
+                return null;
+            }
+        });
+
+        return data.get(0);
+    }
 }

@@ -13,6 +13,7 @@
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Нова рецепта</title>
 </head>
 <body class="sticky">
@@ -46,6 +47,11 @@
         <div class="row">
             <form method="post" action="" id="upload" enctype="multipart/form-data">
                 <div class="col-md-8">
+                    <div class="form-group">
+                        <div class="row">
+                            <h3 id="generalMessage"></h3>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <label for="title">Заглавие<span
@@ -163,7 +169,11 @@
                         </div>
                         <div class="form-group">
                             <div class="recipe-button">
-                                <button type="submit" class="btn btn-save" id="save">Запази</button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i id="spinner"
+                                       class="fa fa-refresh fa-spin"
+                                       style="display:none"></i> Запази
+                                </button>
                             </div>
                         </div>
                     </div>

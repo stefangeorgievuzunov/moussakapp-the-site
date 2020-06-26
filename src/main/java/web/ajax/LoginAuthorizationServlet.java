@@ -45,7 +45,7 @@ public class LoginAuthorizationServlet extends HttpServlet {
             if (e instanceof InvalidDataException) {
                 ajaxResponse.setError(e.getMessage());
             } else {
-                ajaxResponse.setError("Something went wrong.. :(");
+                ajaxResponse.setError("Нещо се обърка.. :(");
             }
         }
 

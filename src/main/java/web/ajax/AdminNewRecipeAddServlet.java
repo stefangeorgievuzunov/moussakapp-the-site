@@ -45,9 +45,11 @@ public class AdminNewRecipeAddServlet extends HttpServlet {
 
             UserServiceModel user = (UserServiceModel) request.getSession(false).getAttribute("loggedUser");
 
-            recipeManagementService.uploadRecipe(user.getId(),recipeViewModel.getTitle(), recipeViewModel.getDescription(), recipeViewModel.getIngredients(), recipeViewModel.getInstructions(), recipeViewModel.getCategory(), prepareTime, cookingTime, servings, request.getPart("uploadedFile"));
+            recipeManagementService.uploadRecipe(user.getId(), recipeViewModel.getTitle(), recipeViewModel.getDescription(), recipeViewModel.getIngredients(),
+                    recipeViewModel.getInstructions(), recipeViewModel.getCategory(), prepareTime, cookingTime, servings, request.getPart("uploadedFile"));
+
             ajaxResponse.setSuccess(true);
-            ajaxResponse.setUrl("/home");
+            ajaxResponse.setUrl("/admin/profile");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,16 +59,16 @@ public class AdminNewRecipeAddServlet extends HttpServlet {
             } else if (e instanceof NumberFormatException) {
                 ajaxResponse.setError("Полетата за приготвяне, готвене и порции, трябва да бъдат цели числа !");
             } else {
-                ajaxResponse.setError("Something went wrong.. :(");
+                ajaxResponse.setError("Нещо се обърка, качването е неуспешно.. :(");
             }
         }
 
         response.setContentType("application/json; charset=utf-8");
-        json.write(response.getWriter(), recipeViewModel);
+        json.write(response.getWriter(), ajaxResponse);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  IOException {
+        response.sendError(HttpServletResponse.SC_FORBIDDEN); //403
     }
 }

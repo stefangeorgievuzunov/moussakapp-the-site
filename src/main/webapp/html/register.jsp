@@ -19,7 +19,7 @@
         <div class="container" id="sub_content">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Над 69 рецепти ;)</h1>
+                    <h1>Над ${requestScope.totalRecipes} рецепти ! </h1>
                     <div class="bread-crums">
                         <a href="${pageContext.request.contextPath}/home">Начало</a>
                         <span class="bread-crums-span">&raquo;</span>
