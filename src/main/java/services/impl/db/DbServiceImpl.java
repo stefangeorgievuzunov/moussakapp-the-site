@@ -12,24 +12,22 @@ import java.util.List;
 
 public class DbServiceImpl implements DbService {
     private final EntityManager entityManager;
-    private final ModelMapper modelMapper;
 
     @Inject
-    DbServiceImpl(EntityManager entityManager, ModelMapper modelMapper) {
+    DbServiceImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-        this.modelMapper = modelMapper;
     }
 
     @Override
-    public <T, V> V getEntityById(Class<T> passedType, Class<V> returnedType, Integer id) {
-        if (passedType.getAnnotation(Entity.class) != null) {
+    public <T> T getEntityById(Class<T> entity, Integer id) {
+        if (entity.getAnnotation(Entity.class) != null) {
             entityManager.getTransaction().begin();
 
-            T entity = entityManager.find(passedType, id);
+            T object = entityManager.find(entity, id);
 
             entityManager.getTransaction().commit();
 
-            return modelMapper.map(entity, returnedType);
+            return object;
         }
         return null;
     }
