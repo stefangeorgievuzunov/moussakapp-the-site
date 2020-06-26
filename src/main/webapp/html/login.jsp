@@ -34,7 +34,7 @@
 <div class="white_bg">
     <div class="container margin_60">
         <div class="main_title">
-            <h2 class="nomargin_top">Потребителска регистрация</h2>
+            <h2 class="nomargin_top">Потребителски вход</h2>
             <hr class="divider">
         </div>
 

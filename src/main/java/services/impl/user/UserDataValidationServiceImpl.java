@@ -7,9 +7,7 @@ import services.UserDataValidationService;
 import services.impl.db.DbServiceImpl;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
 
     private Boolean isUsernameFree(final String username) throws InvalidDataException {
 
-        List<User> users = dbService.select(new DbServiceImpl.Query<User, User>(User.class, User.class) {
+        List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
             @Override
             protected Selection<? extends User> select() {
                 return root();

@@ -4,6 +4,7 @@ import exceptions.InvalidDataException;
 import services.JSONParserService;
 import services.RecipeManagementService;
 
+import services.models.UserServiceModel;
 import web.models.response.AjaxResponse;
 import web.models.view.RecipeViewModel;
 
@@ -42,7 +43,9 @@ public class AdminNewRecipeAddServlet extends HttpServlet {
             Integer cookingTime = Integer.parseInt(recipeViewModel.getCookingTime());
             Integer servings = Integer.parseInt(recipeViewModel.getServings());
 
-            recipeManagementService.uploadRecipe(recipeViewModel.getTitle(), recipeViewModel.getDescription(), recipeViewModel.getIngredients(), recipeViewModel.getInstructions(), recipeViewModel.getCategory(), prepareTime, cookingTime, servings, request.getPart("uploadedFile"));
+            UserServiceModel user = (UserServiceModel) request.getSession(false).getAttribute("loggedUser");
+
+            recipeManagementService.uploadRecipe(user.getId(),recipeViewModel.getTitle(), recipeViewModel.getDescription(), recipeViewModel.getIngredients(), recipeViewModel.getInstructions(), recipeViewModel.getCategory(), prepareTime, cookingTime, servings, request.getPart("uploadedFile"));
             ajaxResponse.setSuccess(true);
             ajaxResponse.setUrl("/home");
 

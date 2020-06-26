@@ -16,7 +16,8 @@ public class Recipe {
     private List<Instruction> instructions;
     private RecipeCategory category;
     private Post post;
-    private byte[] image;
+    private Avatar avatar;
+    private User author;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,7 +74,8 @@ public class Recipe {
         this.description = description;
     }
 
-    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "recipe", cascade = {CascadeType.ALL}, orphanRemoval = true)
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
@@ -82,7 +84,7 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    @OneToMany(mappedBy = "recipe",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "recipe", cascade = {CascadeType.ALL}, orphanRemoval = true)
     public List<Instruction> getInstructions() {
         return instructions;
     }
@@ -101,7 +103,7 @@ public class Recipe {
         this.category = category;
     }
 
-    @OneToOne(mappedBy = "recipe", fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+    @OneToOne(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     public Post getPost() {
         return post;
     }
@@ -110,12 +112,24 @@ public class Recipe {
         this.post = post;
     }
 
-    @Column
-    public byte[] getImage() {
-        return image;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JoinColumn(name = "avatar_id")
+    public Avatar getAvatar() {
+        return avatar;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id",nullable = false)
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

@@ -35,7 +35,7 @@ public class DbServiceImpl implements DbService {
     }
 
     @Override
-    public <T, V> List<V> select(Query<T, V> query) {
+    public <T, V> List<V> createQuery(Query<T, V> query) {
         try {
             if (query != null && query.entityType.getAnnotation(Entity.class) != null) {
                 CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

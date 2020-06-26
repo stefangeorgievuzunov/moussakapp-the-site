@@ -17,6 +17,7 @@ public class User {
     private Integer age;
     private String description;
     private List<Post> posts;
+    private List<Recipe> recipes;
     private Comment comment;
 
     @Id
@@ -109,5 +110,14 @@ public class User {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    @OneToMany(mappedBy = "author")
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

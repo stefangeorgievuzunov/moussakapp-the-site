@@ -1,9 +1,6 @@
 package services.impl.recipe;
 
-import db.Ingredient;
-import db.Instruction;
-import db.Recipe;
-import db.RecipeCategory;
+import db.*;
 import exceptions.InvalidDataException;
 import org.apache.commons.io.IOUtils;
 import services.DbService;
@@ -18,10 +15,10 @@ import javax.persistence.criteria.Selection;
 import javax.servlet.http.Part;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class RecipeManagementServiceImpl implements RecipeManagementService {
     private final UploadImageService uploadImageService;
@@ -34,26 +31,28 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
     }
 
     @Override
-    public void uploadRecipe(String title, String description, String[] ingredients, String[] instructions, String category, Integer prepareTime, Integer cookingTime, Integer servings, Part uploadedFile) throws InvalidDataException, IOException {
+    public void uploadRecipe(Integer authorId, String title, String description, String[] ingredients, String[] instructions, String category, Integer prepareTime, Integer cookingTime, Integer servings, Part uploadedFile) throws InvalidDataException, IOException {
         Recipe recipe = new Recipe();
 
         recipe.setTitle(title);
         recipe.setDescription(description);
 
         List<Ingredient> ingredientList = new ArrayList<>();
-        for (String i:ingredients){
+        for (String i : ingredients) {
             if (!i.isEmpty()) {
                 Ingredient ingredient = new Ingredient();
                 ingredient.setName(i);
+                ingredient.setRecipe(recipe);
                 ingredientList.add(ingredient);
             }
         }
 
         List<Instruction> instructionList = new ArrayList<>();
-        for (String i:instructions){
+        for (String i : instructions) {
             if (!i.isEmpty()) {
                 Instruction instruction = new Instruction();
                 instruction.setName(i);
+                instruction.setRecipe(recipe);
                 instructionList.add(instruction);
             }
         }
@@ -61,7 +60,7 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
         recipe.setIngredients(ingredientList);
         recipe.setInstructions(instructionList);
 
-        List<RecipeCategory> recipeCategory =dbService.select(new DbServiceImpl.Query<RecipeCategory, RecipeCategory>(RecipeCategory.class,RecipeCategory.class) {
+        List<RecipeCategory> recipeCategory = dbService.createQuery(new DbServiceImpl.Query<RecipeCategory, RecipeCategory>(RecipeCategory.class, RecipeCategory.class) {
             @Override
             protected Selection<? extends RecipeCategory> select() {
                 return null;
@@ -69,20 +68,40 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
 
             @Override
             protected Predicate where() {
-                return builder().equal(root().get("name"),category);
+                return builder().equal(root().get("name"), category);
             }
         });
 
-        if (!recipeCategory.isEmpty()){
+        if (!recipeCategory.isEmpty()) {
             recipe.setCategory(recipeCategory.get(0));
         }
 
+        List<User> authors = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
+            @Override
+            protected Selection<? extends User> select() {
+                return null;
+            }
+
+            @Override
+            protected Predicate where() {
+                return builder().equal(root().get("id"), authorId);
+            }
+        });
+
+        recipe.setAuthor(authors.get(0));
+
         recipe.setPrepareTime(prepareTime);
+
         recipe.setCookingTime(cookingTime);
+
         recipe.setServings(servings);
 
         if (uploadedFile != null && uploadImageService.isCorrect(uploadedFile)) {
-            recipe.setImage(IOUtils.toByteArray(uploadedFile.getInputStream()));
+            Avatar avatar = new Avatar();
+            avatar.setName(Paths.get(uploadedFile.getSubmittedFileName()).getFileName().toString());
+            avatar.setData(IOUtils.toByteArray(uploadedFile.getInputStream()));
+
+            recipe.setAvatar(avatar);
         }
 
         dbService.persist(recipe);
