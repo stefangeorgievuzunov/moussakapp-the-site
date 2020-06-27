@@ -8,7 +8,6 @@ import services.RecipeManagementService;
 import services.UploadImageService;
 import services.impl.db.DbServiceImpl;
 
-
 import javax.inject.Inject;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Selection;

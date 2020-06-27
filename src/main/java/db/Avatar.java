@@ -11,7 +11,6 @@ public class Avatar {
     private Recipe recipe;
     private String base64Image;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {

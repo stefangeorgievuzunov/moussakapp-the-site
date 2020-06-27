@@ -75,7 +75,6 @@ public class Recipe {
     }
 
     @OneToMany(mappedBy = "recipe", cascade = {CascadeType.ALL}, orphanRemoval = true)
-
     public List<Ingredient> getIngredients() {
         return ingredients;
     }

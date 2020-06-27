@@ -49,7 +49,7 @@ public class UserActionServiceImpl implements UserActionService {
         List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
             @Override
             protected Selection<? extends User> select() {
-                return null;
+                return root();
             }
 
             @Override

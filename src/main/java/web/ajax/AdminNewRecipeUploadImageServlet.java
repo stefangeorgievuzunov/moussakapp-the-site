@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-
-
 @MultipartConfig
 @WebServlet("/admin/new/recipe/upload/image")
 public class AdminNewRecipeUploadImageServlet extends HttpServlet {
