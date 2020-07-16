@@ -1,4 +1,4 @@
-package core;
+package config;
 
 import org.modelmapper.ModelMapper;
 

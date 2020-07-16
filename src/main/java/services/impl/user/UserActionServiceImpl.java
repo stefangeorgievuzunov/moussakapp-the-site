@@ -46,7 +46,7 @@ public class UserActionServiceImpl implements UserActionService {
     @Override
     public UserServiceModel login(final String username, String password) throws InvalidDataException {
 
-        List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
+        List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>() {
             @Override
             protected Selection<? extends User> select() {
                 return root();

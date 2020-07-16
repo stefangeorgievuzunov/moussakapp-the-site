@@ -26,7 +26,7 @@ public class UserDataValidationServiceImpl implements UserDataValidationService 
 
     private Boolean isUsernameFree(final String username) throws InvalidDataException {
 
-        List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
+        List<User> users = dbService.createQuery(new DbServiceImpl.Query<User, User>() {
             @Override
             protected Selection<? extends User> select() {
                 return root();

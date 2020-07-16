@@ -59,7 +59,7 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
         recipe.setIngredients(ingredientList);
         recipe.setInstructions(instructionList);
 
-        List<RecipeCategory> recipeCategory = dbService.createQuery(new DbServiceImpl.Query<RecipeCategory, RecipeCategory>(RecipeCategory.class, RecipeCategory.class) {
+        List<RecipeCategory> recipeCategory = dbService.createQuery(new DbServiceImpl.Query<RecipeCategory, RecipeCategory>() {
             @Override
             protected Selection<? extends RecipeCategory> select() {
                 return null;
@@ -75,7 +75,7 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
             recipe.setCategory(recipeCategory.get(0));
         }
 
-        List<User> authors = dbService.createQuery(new DbServiceImpl.Query<User, User>(User.class, User.class) {
+        List<User> authors = dbService.createQuery(new DbServiceImpl.Query<User, User>() {
             @Override
             protected Selection<? extends User> select() {
                 return null;
@@ -108,7 +108,7 @@ public class RecipeManagementServiceImpl implements RecipeManagementService {
 
     @Override
     public Long getTotalRecipes() {
-        List<Long> data = dbService.createQuery(new DbServiceImpl.Query<Recipe, Long>(Recipe.class, Long.class) {
+        List<Long> data = dbService.createQuery(new DbServiceImpl.Query<Recipe, Long>() {
             @Override
             protected Selection<? extends Long> select() {
                 return builder().count(root());

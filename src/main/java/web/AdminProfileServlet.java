@@ -31,7 +31,7 @@ public class AdminProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserServiceModel user= (UserServiceModel) request.getSession(false).getAttribute("loggedUser");
 
-        List<Recipe> recipeList= dbService.createQuery(new DbServiceImpl.Query<Recipe, Recipe>(Recipe.class,Recipe.class) {
+        List<Recipe> recipeList= dbService.createQuery(new DbServiceImpl.Query<Recipe, Recipe>() {
             @Override
             protected Selection<? extends Recipe> select() {
                 return null;

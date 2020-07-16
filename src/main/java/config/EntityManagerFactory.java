@@ -1,4 +1,4 @@
-package core;
+package config;
 
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
